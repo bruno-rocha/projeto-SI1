@@ -11,8 +11,8 @@ GET     /login                           controllers.Login.show()
 POST    /login                           controllers.Login.autenticar()
 
 # Registro
-GET     /registrar                       controllers.Cadastro.show()
-POST    /registrar                       controllers.Cadastro.registrar()
+GET     /cadastro                       controllers.Cadastro.show()
+POST    /cadastro                      controllers.Cadastro.registrar()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -9,21 +9,29 @@
                 </p>
             }
 
-            @helper.form(routes.Login.autenticar) {
-                <div class="form-signin">
-                    <h1 class="form-signin-heading">Conecte-se ao Portal do Leite</h1>
-                    <p>
-                        <input type="email" name="email" placeholder="Email" value='@form("email").value'
-                        class="form-control">
-                    </p>
-                    <p>
-                        <input type="password" name="pass" placeholder="Password" class="form-control">
-                    </p>
-                    <div>
-                        <button class="btn btn-primary" type="submit">Login</button>
-                        <a class="form-select-button" style="float:right;" href="/registrar">Cadastre-se</a>
-                    </div>
+            <div class="panel panel-default" style="alignment-adjust: central">
+                <div class="panel-heading">
+                    <h4 class="form-signin-heading">Conecte-se ao Portal do Leite</h4>
                 </div>
-            }
+                <div class="panel-body">
+                @helper.form(routes.Login.autenticar) {
+                    <div class="form-signin">
+                        <p>
+                            <input type="email" name="email" placeholder="Email" value='@form("email").value'
+                            class="form-control">
+                        </p>
+                        <p>
+                            <input type="password" name="pass" placeholder="Password" class="form-control">
+                        </p>
+                        <div>
+                            <button class="btn btn-primary" type="submit">Login</button>
+                            <a class="btn btn-primary" style="float:right;" href="/cadastro">Cadastre-se</a>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
         </div>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
     }

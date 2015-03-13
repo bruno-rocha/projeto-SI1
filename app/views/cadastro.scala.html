@@ -8,25 +8,30 @@
             @flash.get("fail")
             </p>
         }
-
-        @helper.form(routes.Cadastro.registrar) {
-            <h1 class="text-center">Cadastro</h1>
-
-            <p>
-                <input type="text" name="nome" placeholder="Nome" value='@form("nome").value'
-                class="form-control">
-            </p>
-            <p>
-                <input type="email" name="email" placeholder="Email" value='@form("email").value'
-                class="form-control">
-            </p>
-            <p>
-                <input type="password" name="pass" placeholder="Password" class="form-control">
-            </p>
-            <div>
-                <button class="btn btn-primary"  type="submit">Cadastrar</button>
-                <a class="btn btn-info" style="float:right;" href="/login"> Login</a>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="form-signin-heading">Cadastro</h4>
             </div>
-        }
+            <div class="panel-body">
+            @helper.form(routes.Cadastro.registrar) {
+
+                <p>
+                    <input type="text" name="nome" placeholder="Nome" value='@form("nome").value'
+                    class="form-control">
+                </p>
+                <p>
+                    <input type="email" name="email" placeholder="Email" value='@form("email").value'
+                    class="form-control">
+                </p>
+                <p>
+                    <input type="password" name="pass" placeholder="Password" class="form-control">
+                </p>
+                <div>
+                    <button class="btn btn-primary"  type="submit">Cadastrar</button>
+                    <a class="btn btn-info" style="float:right;" href="/login"> Login</a>
+                </div>
+            }
+            </div>
+        </div>
     </div>
 }
