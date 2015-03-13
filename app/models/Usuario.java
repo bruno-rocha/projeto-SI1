@@ -1,10 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name="Usuario")
 public class Usuario {
@@ -14,7 +10,7 @@ public class Usuario {
     private Long id;
 
     private String email;
-    private String pass;
+    private String senha;
     private String nome;
 
     public Usuario() {
@@ -23,7 +19,7 @@ public class Usuario {
     public Usuario(String email, String pass, String nome) {
         this.email = email;
         this.nome = nome;
-        this.pass = pass;
+        this.senha = pass;
     }
 
     public String getEmail() {
@@ -34,12 +30,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getPass() {
-        return pass;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setSenha(String pass) {
+        this.senha = pass;
     }
 
     public String getNome() {
