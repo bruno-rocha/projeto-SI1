@@ -1,10 +1,20 @@
 package models;
 
+import javax.persistence.*;
 import java.lang.Exception;
 
+@Entity (name = "Comentario")
 public class Comentario{
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @OneToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="usuario")
     private Usuario usuario;
+
+    @Column
     private String texto;
 
     public Comentario(Usuario usuario, String texto) throws Exception{
@@ -14,6 +24,10 @@ public class Comentario{
         this.texto = texto;
         this.usuario = usuario;
 
+    }
+    
+    public Comentario(){
+        
     }
 
 }

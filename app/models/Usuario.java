@@ -6,17 +6,24 @@ import javax.persistence.*;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private Long id;
 
+    @Column
     private String email;
+    @Column
     private String senha;
+    @Column
     private String nome;
 
     public Usuario() {
     }
 
-    public Usuario(String email, String pass, String nome, String sobrenome) {
+    public Usuario(String email, String pass, String nome, String sobrenome) throws Exception{
+
+        if (email == "" || nome == "" || senha == "" || sobrenome == "") throw new Exception("Campos em branco.");
+        if (senha.length() < 8 || senha.length() > 20) throw new Exception("Senha deve ter entre 8 e 20 caracteres.");
+
         this.email = email;
         this.nome = nome + " " + sobrenome;
         this.senha = pass;
@@ -45,4 +52,21 @@ public class Usuario {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Usuario usuario = (Usuario) o;
+
+        if (!email.equals(usuario.email)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return email.hashCode();
+    }
+
 }

@@ -5,7 +5,11 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity(name = "Tema")
 public class Tema{
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String nome;
 
@@ -26,6 +30,9 @@ public class Tema{
 
     }
 
+    public Tema() {
+    }
+
     public String getNome() {
         return nome;
     }
@@ -43,19 +50,19 @@ public class Tema{
     }
 
     public void addVoto(Voto vt){
-        //checar se usuario ja votou e usar mudaVoto
-        votos.add(vt);
+        //checa se o Usuário já votou.
+        boolean flag = true;
+        for (Voto v: votos){
+            if(v.getUsuario().equals(vt.getUsuario())){
+                v.setDificuldade(vt.getDificuldade());
+                flag = false;
+            }
+        }
+        if(flag) votos.add(vt);
     }
 
     public void addDica (Dica d){
         dicas.add(d);
     }
 
-    private void mudaVoto(User u, int nota){
-        for (Voto v: votos){
-            if(v.getUsuario().equals(u)){
-                v.setDificuldade(nota);
-            }
-        }
-    }
 }

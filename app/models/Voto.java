@@ -1,24 +1,36 @@
 package models;
 
+import javax.persistence.*;
 import java.lang.Exception;
 
+@Entity(name = "Voto")
 public class Voto{
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    private int dificuldade;
+    @Column
+    private Dificuldade dificuldade;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="usuario")
     private Usuario usuario;
 
-    public Voto(Usuario usuario, int dificuldade) throws Exception{
+    public Voto(Usuario usuario, Dificuldade dificuldade) throws Exception{
         if(usuario == null) throw new Exception("Usuario inválido.");
-        if(dificuldade < -2 || dificuldade > 2) throw new Exception("Dificuldade inválida.");
+        if(dificuldade.getValor() < -2 || dificuldade.getValor() > 2) throw new Exception("Dificuldade inválida.");
         this.dificuldade = dificuldade;
         this.usuario = usuario;
     }
 
-    public int getDificuldade() {
+    public Voto() {
+    }
+
+    public Dificuldade getDificuldade() {
         return dificuldade;
     }
 
-    public void setDificuldade(int dificuldade) {
+    public void setDificuldade(Dificuldade dificuldade) {
         this.dificuldade = dificuldade;
     }
 
