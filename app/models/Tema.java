@@ -61,8 +61,42 @@ public class Tema{
         if(flag) votos.add(vt);
     }
 
+    public double getMediaDificuldade(){
+
+        double total = 0;
+        for (Voto e: votos){
+            total += e.getDificuldade().getValor();
+        }
+
+        return total/votos.size();
+
+    }
+
+
+
     public void addDica (Dica d){
         dicas.add(d);
+        ordenaDicas();
+    }
+
+    private void ordenaDicas(){
+        Quicksort.sort(dicas, 0, dicas.size());
+    }
+
+    // addConcordancia esta aqui pra poder ordenar as dicas sempre q alguem concordar com alguma delas.
+    // checar se existe outra forma.
+    public void addConcordanciaDica (Dica d, Usuario u){
+        d.addConcordancia(u);
+        ordenaDicas();
+    }
+
+    public void addDiscordanciaDica (Dica d, Comentario c){
+        d.addDiscordancia(c);
+    }
+
+    public void addAcusacao(Dica d, Usuario u){
+        d.addAcusacao(u);
+        if (d.getNumeroAcusacoes() == 3) dicas.remove(d);
     }
 
 }
