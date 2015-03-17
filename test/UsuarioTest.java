@@ -5,7 +5,11 @@ public class UsuarioTest {
 
     @Test
     public void test(){
-        Usuario u = new Usuario("Filipe", "fpc@gmail.com", "1234557");
+        try {
+            Usuario u = new Usuario("fpc@gmail.com", "1234557","Filipe", "Coutinho");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

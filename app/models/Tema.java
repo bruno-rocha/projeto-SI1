@@ -11,6 +11,7 @@ public class Tema{
     @GeneratedValue
     private Long id;
 
+    @Column
     private String nome;
 
     @OneToMany(cascade=CascadeType.ALL)
@@ -97,6 +98,14 @@ public class Tema{
     public void addAcusacao(Dica d, Usuario u){
         d.addAcusacao(u);
         if (d.getNumeroAcusacoes() == 3) dicas.remove(d);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

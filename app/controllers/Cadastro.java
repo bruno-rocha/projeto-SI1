@@ -27,7 +27,7 @@ public class Cadastro extends Controller {
 
         Usuario user = cadastroForm.bindFromRequest().get();
 
-        if (cadastroForm.hasErrors() || validate(user.getEmail())) {
+        if (cadastroForm.hasErrors() /*|| validate(user.getEmail())*/) {
             flash("fail", "E-mail já está em uso");
             return badRequest(cadastro.render(cadastroForm));
         } else {
@@ -35,9 +35,9 @@ public class Cadastro extends Controller {
             return redirect(routes.Login.show());
         }
     }
-
+/*
     private static boolean validate(String email) {
         return true;
-    }
+    }*/
 
 }
