@@ -76,18 +76,36 @@ public class Tema{
 
     public void addDica (Dica d){
         dicas.add(d);
-        ordenaDicas();
+        ordenaDicas(d);
     }
 
-    private void ordenaDicas(){
-        Quicksort.sort(dicas, 0, dicas.size());
+    private void ordenaDicas(Dica d){
+        Dica temp;
+        int indice;
+
+        for (int i = 0 ; i < dicas.size() ; i++){
+            if(dicas.get(i).equals(d)){
+                indice = i;
+                break;
+            }
+        }
+
+        for (int i = indice -1 ; i >= 0 ; i--){
+            if (dicas.get(i).getNumeroConcordancias() < d.getNumeroConcordancias()){
+                temp = dicas.get(i);
+                dicas.set(i, d);
+                dicas.set(indice, temp);
+                indice = i;
+            }
+        }
+
     }
 
     // addConcordancia esta aqui pra poder ordenar as dicas sempre q alguem concordar com alguma delas.
     // checar se existe outra forma.
     public void addConcordanciaDica (Dica d, Usuario u){
         d.addConcordancia(u);
-        ordenaDicas();
+        ordenaDicas(d);
     }
 
     public void addDiscordanciaDica (Dica d, Comentario c){
