@@ -18,7 +18,6 @@ public class Dica{
     @JoinColumn(name="usuario")
     private Usuario usuario;
 
-    private String texto;
     private Status status;
 
     @OneToMany(cascade=CascadeType.ALL)
@@ -34,9 +33,8 @@ public class Dica{
     private List<Usuario> acusacoes;
 
 
-    public Dica(Usuario user, String texto){
+    public Dica(Usuario user){
         this.usuario = user;
-        this.texto = texto;
         this.status = Status.ABERTA;
         concordancias = new ArrayList<Usuario>();
         discordancias = new ArrayList<Comentario>();
