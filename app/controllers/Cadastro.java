@@ -10,6 +10,9 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.cadastro;
 
+import java.util.Iterator;
+import java.util.List;
+
 import static play.data.Form.form;
 
 public class Cadastro extends Controller {
@@ -27,7 +30,7 @@ public class Cadastro extends Controller {
 
         Usuario user = cadastroForm.bindFromRequest().get();
 
-        if (cadastroForm.hasErrors() /*|| validate(user.getEmail())*/) {
+        if (cadastroForm.hasErrors() || validate(user.getEmail())) {
             flash("fail", "E-mail já está em uso");
             return badRequest(cadastro.render(cadastroForm));
         } else {
@@ -35,9 +38,30 @@ public class Cadastro extends Controller {
             return redirect(routes.Login.show());
         }
     }
-/*
-    private static boolean validate(String email) {
-        return true;
-    }*/
 
+    @Transactional
+    private static boolean validate(String email) {
+        List<Usuario> usuarios = dao.findByAttributeName("Usuario", "email", email);
+
+        for (Usuario u: usuarios){
+            if (u.getEmail().equals(email)){
+                return true;
+            }
+        }
+        return false;
+    }
+/*
+    @Transactional
+    public static Result cadastraUsuario() throws NoSuchAlgorithmException {
+        DynamicForm requestData = Form.form().bindFromRequest();
+        final String email, nome, senha;
+        email = requestData.get("email");
+        nome = requestData.get("nome");
+        senha = requestData.get("senha");
+        Usuario u = new Usuario(email, senha, nome);
+        if (Portal.salvaUsuario(u)) {
+            return Application.login();
+        }
+        return Application.register();
+    }*/
 }

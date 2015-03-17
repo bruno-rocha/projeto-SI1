@@ -1,6 +1,5 @@
 @(temas: List[Tema])
 
-<!DOCTYPE html>
 
 <html>
     <head>
@@ -14,14 +13,13 @@
         <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
     </head>
     <body>
+    <a href=@routes.Login.logout()>logout</a>
         <div class="panel-body">
             <ul class="list-group">
             @for(tema <- temas){
-                @if(!temas.isEmpty){
-                    <li class="list-group-item">
-                        <h5>@tema.getNome()</h5>
-                    </li>
-                }
+                <li class="list-group-item">
+                    h5>@tema.getNome()</h5>
+                </li>
             }
             </ul>
         </div>

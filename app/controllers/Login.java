@@ -39,7 +39,7 @@ public class Login extends Controller{
         String email = u.getEmail();
         String senha = u.getSenha();
 
-        if (loginForm.hasErrors()/* || !validate(email, senha)*/) {
+        if (loginForm.hasErrors() || !validate(email, senha)) {
             flash("fail", "Email ou Senha Inválidos");
             return badRequest(login.render(loginForm));
         } else {
@@ -51,7 +51,8 @@ public class Login extends Controller{
         }
 
     }
-/*
+
+    @Transactional
     private static boolean validate(String email, String senha) {
         List<Usuario> u = dao.findByAttributeName("Usuario", "email", email);
         if (u == null || u.isEmpty()) {
@@ -61,5 +62,5 @@ public class Login extends Controller{
             return false;
         }
         return true;
-    }*/
+    }
 }

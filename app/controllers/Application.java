@@ -40,7 +40,7 @@ public class Application extends Controller {
         return false;
     }
 
-
+/*
     @Transactional
     public static Usuario recuperaUsuario(String email) {
         List<Usuario> usuarios = dao.findByAttributeName(Usuario.class.getName(), "email", email);
