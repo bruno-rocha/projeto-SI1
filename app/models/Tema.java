@@ -90,7 +90,7 @@ public class Tema{
                 break;
             }
         }
-
+/*
         for (int i = indice -1 ; i >= 0 ; i--){
             if (dicas.get(i).getNumeroConcordancias() < d.getNumeroConcordancias()){
                 temp = dicas.get(i);
@@ -99,7 +99,7 @@ public class Tema{
                 indice = i;
             }
         }
-
+*/
     }
 
     // addConcordancia esta aqui pra poder ordenar as dicas sempre q alguem concordar com alguma delas.

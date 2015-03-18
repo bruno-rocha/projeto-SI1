@@ -1,28 +1,49 @@
-@(temas: List[Tema])
+@(temas: List[Tema])(usuario: Usuario)
 
+    @main("Portal do Leite") {
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Portal do Leite</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Configurações</a></li>
+                        <li><a href="@routes.Login.logout()">Sair</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Pesquisar...">
+                    </form>
+                </div>
+            </div>
+        </nav>
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Projeto da disciplina de SI1 2014.2">
-        <meta name="author" content="Bruno Rocha e Filipe Coutinho">
-        <title>Portal do Leite</title>
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
-    </head>
-    <body>
-    <a href=@routes.Login.logout()>logout</a>
-        <div class="panel-body">
-            <ul class="list-group">
-            @for(tema <- temas){
-                <li class="list-group-item">
-                    h5>@tema.getNome()</h5>
-                </li>
-            }
-            </ul>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar navbar-static-top list-group">
+                        <li class="active list-group-item"><a href="#">Metadicas<span class="sr-only">(current)</span></a></li>
+                        @for(tema <- temas) {
+                            <li class="list-group-item">
+                                <h5>@tema.getNome()</h5>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-md-10 main">
+                    <h1 class="page-header">Bem Vindo ao Portal do Leite @usuario.getNome()!</h1>
+                    <h2 class="sub-header">Dicas</h2>
+                </div>
+            </div>
         </div>
 
-    </body>
-</html>
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("public/stylesheets/dashboard.css")">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="public/javascripts/bootstrap.min.js"></script>
+    }

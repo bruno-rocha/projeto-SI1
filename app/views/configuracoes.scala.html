@@ -1,26 +1,26 @@
 @(form: Form[Usuario])
 
-@main("Cadastro | Portal do Leite") {
-
+@main("Configurações | Portal do Leite") {
+<!--
     <div class="col-sm-4 col-sm-offset-4">
-        @if(flash.contains("fail")) {
+        if(flash.contains("fail")) {
             <p class="bg-danger" style="">
-            @flash.get("fail")
+            flash.get("fail")
             </p>
         }
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4 class="form-signin-heading">Cadastro</h4>
+                <h4 class="form-signin-heading">Configurações</h4>
             </div>
             <div class="panel-body">
-            @helper.form(routes.Cadastro.registrar) {
+            helper.form(routes.Cadastro.cadastrar) {
 
                 <p>
-                    <input type="text" name="nome" placeholder="Nome" value='@form("nome").value'
+                    <input type="text" name="nome" placeholder="Nome" value='form("nome").value'
                     class="form-control">
                 </p>
                 <p>
-                    <input type="email" name="email" placeholder="Email" value='@form("email").value'
+                    <input type="email" name="email" placeholder="Email" value='form("email").value'
                     class="form-control">
                 </p>
                 <p>
@@ -33,5 +33,5 @@
             }
             </div>
         </div>
-    </div>
+    </div>-->
 }

@@ -4,31 +4,33 @@ import models.Tema;
 import models.Usuario;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
+import play.mvc.Result;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
-import play.mvc.Result;
 import views.html.index;
 
 import java.util.List;
 
 public class Application extends Controller {
     private static GenericDAO dao = new GenericDAOImpl();
+    private static List<Tema> temas;
 
     @Transactional
     public static Result index() {
-        if (session().get("user") == null) {
+        if (session().get("usuarioAtual") == null) {
             return redirect(routes.Login.show());
         }
-        return ok(index.render(getTemas()/*, getUsuario())*/));
+        getTemas();
+        return ok(index.render(temas, Login.getUsuarioAtual()));
     }
 
     @Transactional
-    public static List getTemas() {
-        List<Tema> temas = dao.findAllByClassName("Tema");
-        return temas;
+    public static void getTemas() {
+        temas = dao.findAllByClassName("Tema");
+        dao.flush();
     }
 
-    /*
+/*
     @Transactional
     public static boolean salvaUsuario(Usuario usuario) throws NoSuchAlgorithmException {
         if (validaEmail(usuario.getEmail()) && validaSenha(usuario.getSenha()) && validaNome(usuario.getNome())) {
@@ -39,7 +41,7 @@ public class Application extends Controller {
         }
         return false;
     }
-
+*/
 /*
     @Transactional
     public static Usuario recuperaUsuario(String email) {
@@ -50,7 +52,7 @@ public class Application extends Controller {
             return null;
         }
     }
-
+/*
     @Transactional
     public static boolean adicionaDica(Dica dica) {
         if (validaDica(dica)){

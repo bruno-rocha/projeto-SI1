@@ -6,8 +6,6 @@ import play.GlobalSettings;
 import play.Logger;
 import play.db.jpa.JPA;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -21,8 +19,6 @@ public class Global extends GlobalSettings {
 
             @Override
             public void invoke() throws Throwable {
-                List<Tema> temas = new ArrayList<Tema>();
-
                 if(dao.findAllByClassName("Tema").isEmpty()){
                     Tema t1 = new Tema("Análise x Design");
                     Tema t2 = new Tema("Orientacao a Objetos");
@@ -37,14 +33,20 @@ public class Global extends GlobalSettings {
                     Tema t11 = new Tema("Minitestes");
                     Tema t12 = new Tema("Projeto");
 
-                    Iterator<Tema> it = temas.iterator();
-                    while(it.hasNext()){
-                        temas.add(it.next());
-                    }
+                    dao.persist(t1);
+                    dao.persist(t2);
+                    dao.persist(t3);
+                    dao.persist(t4);
+                    dao.persist(t5);
+                    dao.persist(t6);
+                    dao.persist(t7);
+                    dao.persist(t8);
+                    dao.persist(t9);
+                    dao.persist(t10);
+                    dao.persist(t11);
+                    dao.persist(t12);
 
-                    while(it.hasNext()){
-                        dao.persist(it.next());
-                    }
+                    dao.flush();
                 }
             }
         });

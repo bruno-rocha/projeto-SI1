@@ -3,16 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /                           	 controllers.Application.index()
-GET     /logout							 controllers.Login.logout()
+GET         /                    controllers.Application.index()
+GET         /login               controllers.Login.show()
+POST        /login               controllers.Login.autenticar()
+GET         /logout              controllers.Login.logout()
+POST        /home                controllers.Login.cadastrar()
 
-# Login
-GET     /login                           controllers.Login.show()
-POST    /login                           controllers.Login.autenticar()
-
-# Registro
-GET     /cadastro                       controllers.Cadastro.show()
-POST    /cadastro                      controllers.Cadastro.registrar()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file        controllers.Assets.at(path="/public", file)

@@ -1,7 +1,14 @@
 body {
-    padding-top: 40px;
+    padding-top: 0px;
     padding-bottom: 40px;
     background-color: #eee;
+}
+
+.navbar .navbar-inverse .navbar-static-top
+.navbar-form .navbar-right .form-inline{
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
 }
 
 .form-signin {

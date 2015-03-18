@@ -70,7 +70,7 @@ public class Dica{
     public Usuario getUsuario() {
         return usuario;
     }
-
+/*
     public String getTexto() {
         return texto;
     }
@@ -78,7 +78,7 @@ public class Dica{
     public void setTexto(String texto) {
         this.texto = texto;
     }
-
+*/
     public List<Comentario> getDiscordancias() {
         return discordancias;
     }
