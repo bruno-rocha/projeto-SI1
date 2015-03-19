@@ -19,7 +19,7 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                 @helper.form(routes.Login.autenticar) {
-                    <form class="navbar-form navbar-right form-inline">
+                    <form class="navbar-form navbar-right">
                         <div class="form-group">
                                 <input type="email" name="email" placeholder="Email" value='@loginForm("email").value'
                                 class="form-control">
@@ -34,28 +34,28 @@
             </div>
         </nav>
         <div class="jumbotron">
-            <div class="col-md-8">
+            <div id="apresentacao" class="col-md-8">
                 <h1>Portal do Leite!</h1>
                 <p>Este portal foi feito para que você possa ter uma rede de informações, que facilitarão sua vida
                     na disciplina de Sistemas de Informação. Você pode interagir com outros alunos para receber ou repassar
                     dicas sobre a disciplina. Cadastre-se já</p>
             </div>
-            <div class="col-md-6">
+            <div id="cadastro" class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="form-signin-heading">Cadastro</h4>
                     </div>
                     <div class="panel-body">
                     @helper.form(routes.Login.cadastrar) {
-
-                        <p>
+                        <div class="form-group">
                             <input type="text" name="nome" placeholder="Nome" value='@cadastroForm("nome").value'
                             class="form-control">
-                        </p>
-                        <p>
+                        </div>
+                        <div class="form-group">
                             <input type="text" name="sobrenome" placeholder="Sobrenome" value='@cadastroForm("sobrenome").value'
                             class="form-control">
-                        </p>
+                        </div>
+
                         <p>
                             <input type="email" name="email" placeholder="Email" value='@cadastroForm("email").value'
                             class="form-control">
@@ -76,60 +76,7 @@
                 </div>
             </div>
         </div>
-        <!--
-                helper.form(routes.Login.autenticar) {
-                    <div class="navbar-form navbar-right form-inline">
-                        <div class="form-group">
-                            <p>
-                                <input type="email" name="email" placeholder="Email" value='form("email").value'
-                                class="form-control">
-                            </p>
-                            <p>
-                                <input type="password" name="pass" placeholder="Password" class="form-control">
-                            </p>
-                        </div>
-                        <div>
-                            <button class="btn btn-default navbar-btn" type="submit">Login</button>
-                        </div>
-                    </div>
-                }
 
-    <div class="col-sm-4 col-sm-offset-4">
-        if(flash.contains("fail")) {
-            <p class="bg-danger" style="">
-            flash.get("fail")
-            </p>
-        }
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="form-signin-heading">Cadastro</h4>
-            </div>
-            <div class="panel-body">
-            helper.form(routes.Cadastro.cadastrar) {
-
-                <p>
-                    <input type="text" name="nome" placeholder="Nome" value='form("nome").value'
-                    class="form-control">
-                </p>
-                <p>
-                    <input type="text" name="sobrenome" placeholder="Sobrenome" value='form("sobrenome").value'
-                    class="form-control">
-                </p>
-                <p>
-                    <input type="email" name="email" placeholder="Email" value='form("email").value'
-                    class="form-control">
-                </p>
-                <p>
-                    <input type="password" name="pass" placeholder="Password" class="form-control">
-                </p>
-                <div>
-                    <button class="btn btn-primary"  type="submit">Cadastrar</button>
-                </div>
-            }
-            </div>
-        </div>
-    </div>
--->
         <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="public/stylesheets/bootstrap.min.css"></script>

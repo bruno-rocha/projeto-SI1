@@ -4,13 +4,30 @@ body {
     background-color: #eee;
 }
 
-.navbar .navbar-inverse .navbar-static-top
-.navbar-form .navbar-right .form-inline{
+#cadastro{
+    width: 33.33333%;
+    float: right;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#apresentacao{
+    width: 66.66666%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+/*
+.navbar .navbar-inverse .navbar-static-top{
     display: inline-block;
     width: auto;
     vertical-align: middle;
 }
-
+/*
 .form-signin {
     max-width: 330px;
     padding: 15px;
@@ -45,3 +62,4 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+*/
