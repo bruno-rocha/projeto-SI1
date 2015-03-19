@@ -1,0 +1,26 @@
+package models;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+/**
+ * Created by Filipe on 19/03/2015.
+ */
+
+@Entity(name = "DicaMaterial")
+public class DicaMaterial extends Dica {
+
+    @Column
+    private String url;
+
+    public DicaMaterial(){}
+
+    public DicaMaterial(Usuario user, String url) throws Exception{
+        super(user);
+        
+        //condicao url
+        this.url = url;
+    }
+
+
+}

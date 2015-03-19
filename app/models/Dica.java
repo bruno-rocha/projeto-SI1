@@ -15,9 +15,10 @@ public class Dica{
     private Long id;
 
     @OneToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="usuario")
+    @JoinColumn(name="Usuario")
     private Usuario usuario;
 
+    @Column
     private Status status;
 
     @OneToMany(cascade=CascadeType.ALL)
@@ -70,15 +71,7 @@ public class Dica{
     public Usuario getUsuario() {
         return usuario;
     }
-/*
-    public String getTexto() {
-        return texto;
-    }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
-    }
-*/
     public List<Comentario> getDiscordancias() {
         return discordancias;
     }
