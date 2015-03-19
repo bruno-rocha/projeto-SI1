@@ -17,8 +17,9 @@ public class DicaMaterial extends Dica {
 
     public DicaMaterial(Usuario user, String url) throws Exception{
         super(user);
-        
+
         //condicao url
+        if(url != "http://%s.com") throw new Exception("URL invalida.");
         this.url = url;
     }
 
