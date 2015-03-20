@@ -57,22 +57,52 @@ public class Tema{
             if(v.getUsuario().equals(vt.getUsuario())){
                 v.setDificuldade(vt.getDificuldade());
                 flag = false;
+                break;
             }
         }
         if(flag) votos.add(vt);
+        ordenaVotos(vt);
     }
 
-    public double getMediaDificuldade(){
+    public String getMediaDificuldade(){
 
-        double total = 0;
+        double total = 0f;
         for (Voto e: votos){
             total += e.getDificuldade().getValor();
         }
 
-        return total/votos.size();
+        return String.format("%.2f", total/votos.size());
 
     }
 
+    public String getMedianaDificuldade(){
+        if (votos.size()%2 != 0) return String.format("%.2f", votos.get(votos.size()/2).getDificuldade().getValor());
+        else{
+            return String.format("%.2f", (votos.get(votos.size()/2).getDificuldade().getValor() +
+                    votos.get(votos.size()/2 -1).getDificuldade().getValor())/2.0);
+        }
+    }
+
+    private void ordenaVotos(Voto v){
+        Voto temp;
+        int indice = votos.size() -1;
+
+        for (int i = 0 ; i < votos.size() ; i++){
+            if(votos.get(i).equals(v)){
+                indice = i;
+                break;
+            }
+        }
+
+        for (int i = indice -1 ; i >= 0 ; i--){
+            if (votos.get(i).getDificuldade().getValor() < v.getDificuldade().getValor()){
+                temp = votos.get(i);
+                votos.set(i, v);
+                votos.set(indice, temp);
+                indice = i;
+            }
+        }
+    }
 
 
     public void addDica (Dica d){
