@@ -16,6 +16,9 @@ public class Voto{
     @JoinColumn(name="usuario")
     private Usuario usuario;
 
+    @ManyToOne(cascade=CascadeType.ALL)
+    private Tema tema;
+
     public Voto(Usuario usuario, Dificuldade dificuldade) throws Exception{
         if(usuario == null) throw new Exception("Usuario inválido.");
         if(dificuldade.getValor() < -2 || dificuldade.getValor() > 2) throw new Exception("Dificuldade inválida.");

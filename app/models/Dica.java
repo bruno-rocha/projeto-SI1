@@ -33,6 +33,9 @@ public class Dica{
     @JoinColumn(name="Acusaocoes")
     private List<Usuario> acusacoes;
 
+    @ManyToOne(cascade=CascadeType.ALL)
+    private Tema tema;
+
 
     public Dica(Usuario user){
         this.usuario = user;
