@@ -19,7 +19,10 @@ public class DicaMaterial extends Dica {
         super(user);
 
         //condicao url
-        if(url != "http://%s.com") throw new Exception("URL invalida.");
+        if(!url.startsWith("http://")) throw new Exception("URL precisa começar com http:// .");
+        if(!url.endsWith(".com") || !url.endsWith(".com.br") || !url.endsWith(".edu") || !url.endsWith(".edu.br"))
+            throw new Exception("URL deve terminar com: .com, .com.br, .edu ou .edu.br .");
+
         this.url = url;
     }
 
