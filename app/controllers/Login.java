@@ -14,7 +14,7 @@ import java.util.List;
 
 import static play.data.Form.form;
 
-public class Login extends Controller{
+public class Login extends Controller {
     private static GenericDAO dao = new GenericDAOImpl();
     static Form<Usuario> loginForm = form(Usuario.class).bindFromRequest();
     static Form<Usuario> cadastroForm = form(Usuario.class).bindFromRequest();
@@ -75,6 +75,7 @@ public class Login extends Controller{
             return badRequest(login.render(loginForm, cadastroForm));
         } else {
             dao.persist(user);
+            dao.flush();
             flash("sucess", "Usuario cadastrado com sucesso!");
             return redirect(routes.Login.show());
         }
@@ -91,7 +92,4 @@ public class Login extends Controller{
         return false;
     }
 
-    public static Usuario getUsuarioAtual() {
-        return usuarioAtual;
-    }
 }

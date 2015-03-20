@@ -13,22 +13,31 @@ import java.util.List;
 
 public class Application extends Controller {
     private static GenericDAO dao = new GenericDAOImpl();
-    private static List<Tema> temas;
 
     @Transactional
     public static Result index() {
-        if (session().get("usuarioAtual") == null) {
+        String userName = session().get("usuarioAtual");
+        if (userName == null) {
             return redirect(routes.Login.show());
         }
-        getTemas();
-        return ok(index.render(temas, Login.getUsuarioAtual()));
+
+        Usuario u = getUsuarioAtual(userName);
+        return ok(index.render(getTemas(), u));
     }
 
     @Transactional
-    public static void getTemas() {
-        temas = dao.findAllByClassName("Tema");
+    public static List<Tema> getTemas() {
+        List<Tema> temas = dao.findAllByClassName("Tema");
         dao.flush();
+        return temas;
     }
+
+    @Transactional
+    public static Usuario getUsuarioAtual(String nome) {
+        List<Usuario> usuarios = dao.findByAttributeName("Usuario","nome", nome);
+        return usuarios.get(0);
+    }
+/*
 
 /*
     @Transactional
@@ -42,17 +51,7 @@ public class Application extends Controller {
         return false;
     }
 */
-/*
-    @Transactional
-    public static Usuario recuperaUsuario(String email) {
-        List<Usuario> usuarios = dao.findByAttributeName(Usuario.class.getName(), "email", email);
-        if (usuarios.size() > 0) {
-            return usuarios.get(0);
-        } else {
-            return null;
-        }
-    }
-/*
+    /*
     @Transactional
     public static boolean adicionaDica(Dica dica) {
         if (validaDica(dica)){

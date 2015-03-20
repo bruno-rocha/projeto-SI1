@@ -28,7 +28,8 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar navbar-static-top list-group">
-                        <li class="active list-group-item"><a href="#">Metadicas<span class="sr-only">(current)</span></a></li>
+                        <li class="active list-group-item-heading">Temas</li>
+                        <li class="list-group-item"><a>Metadicas<span class="sr-only">(current)</span></a></li>
                         @for(tema <- temas) {
                             <li class="list-group-item">
                                 <h5>@tema.getNome()</h5>
@@ -37,7 +38,7 @@
                     </ul>
                 </div>
                 <div class="col-sm-9 col-md-10 main">
-                    <h1 class="page-header">Bem Vindo ao Portal do Leite<!-- usuario.getNome-->!</h1>
+                    <h1 class="page-header">Bem Vindo ao Portal do Leite @usuario.getNome() !</h1>
                     <h2 class="sub-header">Dicas</h2>
                 </div>
             </div>
