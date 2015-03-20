@@ -38,4 +38,25 @@ public class DicaConselho extends Dica {
     public String getTipo(){
         return "Conselho sobre o tema";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DicaConselho)) return false;
+        if (!super.equals(o)) return false;
+
+        DicaConselho that = (DicaConselho) o;
+
+        if (!texto.equals(that.texto)) return false;
+        if (!getUsuario().equals(that.getUsuario())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + texto.hashCode();
+        return result;
+    }
 }

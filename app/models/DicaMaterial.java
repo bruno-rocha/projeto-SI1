@@ -36,4 +36,24 @@ public class DicaMaterial extends Dica {
         return "Link de material útil";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DicaMaterial)) return false;
+        if (!super.equals(o)) return false;
+
+        DicaMaterial that = (DicaMaterial) o;
+
+        if (!url.equals(that.url)) return false;
+        if (!getUsuario().equals(that.getUsuario())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + url.hashCode();
+        return result;
+    }
 }

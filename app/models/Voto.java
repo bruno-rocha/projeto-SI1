@@ -37,4 +37,24 @@ public class Voto{
     public Usuario getUsuario() {
         return usuario;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Voto voto = (Voto) o;
+
+        if (dificuldade != voto.dificuldade) return false;
+        if (!usuario.equals(voto.usuario)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = dificuldade.hashCode();
+        result = 31 * result + usuario.hashCode();
+        return result;
+    }
 }

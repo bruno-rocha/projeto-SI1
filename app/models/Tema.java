@@ -156,4 +156,20 @@ public class Tema{
         this.id = id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tema tema = (Tema) o;
+
+        if (!nome.equals(tema.nome)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return nome.hashCode();
+    }
 }
