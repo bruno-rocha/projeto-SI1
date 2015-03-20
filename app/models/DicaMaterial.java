@@ -23,5 +23,14 @@ public class DicaMaterial extends Dica {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "Link do Material: " + url + " .";
+    }
+
+    @Override
+    public String getTipo(){
+        return "Link de material útil";
+    }
 
 }

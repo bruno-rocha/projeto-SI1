@@ -30,4 +30,15 @@ public class Comentario{
         
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
 }

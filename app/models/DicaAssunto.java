@@ -28,4 +28,14 @@ public class DicaAssunto extends Dica {
     public void setAssunto(String assunto) {
         this.assunto = assunto;
     }
+
+    @Override
+    public String toString() {
+        return "Assunto: " + assunto + ".";
+    }
+
+    @Override
+    public String getTipo(){
+        return "Assunto Importante";
+    }
 }

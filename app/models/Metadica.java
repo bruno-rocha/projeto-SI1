@@ -36,4 +36,13 @@ public class Metadica extends Dica {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    @Override
+    public String toString() {
+
+        String result = "Comentario: " + comentario + "\n";
+        for (Dica e: dicas) result += e.toString() + "\n";
+
+        return result;
+    }
 }

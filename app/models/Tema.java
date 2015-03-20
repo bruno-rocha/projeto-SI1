@@ -104,16 +104,16 @@ public class Tema{
 
     // addConcordancia esta aqui pra poder ordenar as dicas sempre q alguem concordar com alguma delas.
     // checar se existe outra forma.
-    public void addConcordanciaDica (Dica d, Usuario u){
+    public void addConcordanciaDica (Dica d, Usuario u) throws Exception{
         d.addConcordancia(u);
         ordenaDicas(d);
     }
 
-    public void addDiscordanciaDica (Dica d, Comentario c){
+    public void addDiscordanciaDica (Dica d, Comentario c) throws Exception{
         d.addDiscordancia(c);
     }
 
-    public void addAcusacao(Dica d, Usuario u){
+    public void addAcusacao(Dica d, Usuario u) throws Exception{
         d.addAcusacao(u);
         if (d.getNumeroAcusacoes() == 3) dicas.remove(d);
     }

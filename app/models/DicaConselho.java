@@ -28,4 +28,14 @@ public class DicaConselho extends Dica {
     public void setTexto(String texto) {
         this.texto = texto;
     }
+
+    @Override
+    public String toString() {
+        return "Conselho: " + texto + ".";
+    }
+
+    @Override
+    public String getTipo(){
+        return "Conselho sobre o tema";
+    }
 }

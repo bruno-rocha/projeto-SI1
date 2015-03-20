@@ -38,4 +38,14 @@ public class DicaDisciplina extends Dica{
     public void setRazao(String razao) {
         this.razao = razao;
     }
+
+    @Override
+    public String toString() {
+        return "Disciplina: " + nome + ".\n" + "Razão da utilidade: " + razao + ".";
+    }
+
+    @Override
+    public String getTipo(){
+        return "Disciplina Importante";
+    }
 }
