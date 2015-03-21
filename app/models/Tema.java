@@ -55,7 +55,7 @@ public class Tema{
     public void addVoto(Voto vt){
         //checa se o Usuário já votou.
         boolean flag = true;
-        for (Voto v: votos){
+        for (Voto v: getVotos()){
             if(v.getUsuario().equals(vt.getUsuario())){
                 try {
                     v.setDificuldade(vt.getDificuldade());
