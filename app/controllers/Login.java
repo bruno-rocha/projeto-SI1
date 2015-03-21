@@ -3,6 +3,7 @@ package controllers;
 import models.Usuario;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
+import play.Logger;
 import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -77,6 +78,7 @@ public class Login extends Controller {
             dao.persist(user);
             dao.flush();
             flash("sucess", "Usuario cadastrado com sucesso!");
+            Logger.info(user.getNome());
             return redirect(routes.Login.show());
         }
     }

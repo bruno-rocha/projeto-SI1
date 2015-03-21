@@ -174,4 +174,17 @@ public class Tema{
     public int hashCode() {
         return nome.hashCode();
     }
+
+    public boolean checaVotou(Usuario u){
+        for(Voto v: getVotos()){
+            if(v.getUsuario().equals(u)) return true;
+        }
+        return false;
+    }
+
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

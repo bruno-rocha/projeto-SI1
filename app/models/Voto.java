@@ -63,4 +63,12 @@ public class Voto{
         result = 31 * result + usuario.hashCode();
         return result;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

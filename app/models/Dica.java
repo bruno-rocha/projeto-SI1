@@ -75,20 +75,24 @@ public class Dica{
 
     public void addDiscordancia(Comentario d)throws Exception{
         checaConcordancia(d.getUsuario());
-        if(this.status == Status.ABERTA) discordancias.add(d);
-        if(discordancias.size() == 20) this.status = Status.FECHADA;
+        if(this.status == Status.ABERTA){
+            discordancias.add(d);
+            if(discordancias.size() == 20) this.status = Status.FECHADA;
+        }
     }
 
     public void addConcordancia(Usuario u) throws Exception{
         checaConcordancia(u);
-        if(this.status == Status.ABERTA) concordancias.add(u);
-        if(concordancias.size() == 20) this.status = Status.FECHADA;
+        if(this.status == Status.ABERTA) {
+            concordancias.add(u);
+            if(concordancias.size() == 20) this.status = Status.FECHADA;
+        }
+
     }
 
     public void addAcusacao(Usuario u) throws Exception{
-        for (Usuario us: acusacoes){
-            if (u.equals(us)) throw new Exception("Você já acusou esta dica.");
-        }
+
+        if (acusacoes.contains(u)) throw new Exception("Você já acusou esta dica.");
         acusacoes.add(u);
     }
 
@@ -122,6 +126,18 @@ public class Dica{
 
     public String getTipo(){
         return "Dica";
+    }
+
+    public String getIndiceDiscordancias(){
+        return String.format("%.2f", (concordancias.size()+0.0)/(concordancias.size()+discordancias.size()));
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

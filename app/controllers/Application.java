@@ -1,9 +1,9 @@
 package controllers;
 
-import models.Tema;
-import models.Usuario;
+import models.*;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
+import play.Logger;
 import play.mvc.Result;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -13,6 +13,8 @@ import java.util.List;
 
 public class Application extends Controller {
     private static GenericDAO dao = new GenericDAOImpl();
+    private static Tema temaAtual = (Tema) dao.findAllByClassName("Tema").get(0);
+    private static List<Voto> votos;
 
     @Transactional
     public static Result index() {
@@ -20,9 +22,8 @@ public class Application extends Controller {
         if (userName == null) {
             return redirect(routes.Login.show());
         }
-
         Usuario u = getUsuarioAtual(userName);
-        return ok(index.render(getTemas(), u));
+        return ok(index.render(getTemas(), u, getTemaAtual()));
     }
 
     @Transactional
@@ -35,8 +36,53 @@ public class Application extends Controller {
     @Transactional
     public static Usuario getUsuarioAtual(String nome) {
         List<Usuario> usuarios = dao.findByAttributeName("Usuario","nome", nome);
-        return usuarios.get(0);
+        if (usuarios.size() > 0){
+            return usuarios.get(0);
+        }
+        return null;
     }
+
+    @Transactional
+    public static Tema getTemaAtual() {
+        return temaAtual;
+    }
+
+    @Transactional
+    public static Result setTemaAtual(long id) {
+        temaAtual = dao.findByEntityId(Tema.class, id);
+        Logger.info("Selecionando tema");
+        return redirect("/");
+    }
+
+    @Transactional
+    public static void addDica(Dica dica) {
+        //validar dica
+        dao.persist(dica);
+        dao.flush();
+    }
+
+    @Transactional
+    public static void removeDica(Dica dica) {
+        dao.removeById(Dica.class, dica.getId());
+        dao.flush();
+    }
+
+    @Transactional
+    public static void setDica(Dica novaDica) {
+        dao.merge(novaDica);
+        dao.flush();
+    }
+
+    @Transactional
+    public static Dica getDica(long id) {
+        return dao.findByEntityId(Dica.class, id);
+    }
+
+    @Transactional
+    public static void addDificuldade(){
+
+    }
+}
 /*
 
 /*

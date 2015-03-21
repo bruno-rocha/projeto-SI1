@@ -1,50 +1,64 @@
-@(temas: List[Tema])(usuario: Usuario)
+@(temas: List[Tema])(usuario: Usuario)(temaAtual: Tema)
 
-    @main("Portal do Leite") {
-        <nav class="navbar navbar-inverse navbar-static-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Portal do Leite</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Configurações</a></li>
-                        <li><a href="@routes.Login.logout()">Sair</a></li>
-                    </ul>
-                    <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Pesquisar...">
-                    </form>
-                </div>
-            </div>
-        </nav>
-
+@main("Portal do Leite") {
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar">
-                    <ul class="nav nav-sidebar navbar-static-top list-group">
-                        <li class="active list-group-item-heading">Temas</li>
-                        <li class="list-group-item"><a>Metadicas<span class="sr-only">(current)</span></a></li>
-                        @for(tema <- temas) {
-                            <li class="list-group-item">
-                                <h5>@tema.getNome()</h5>
-                            </li>
-                        }
-                    </ul>
-                </div>
-                <div class="col-sm-9 col-md-10 main">
-                    <h1 class="page-header">Bem Vindo ao Portal do Leite @usuario.getNome() !</h1>
-                    <h2 class="sub-header">Dicas</h2>
-                </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Portal do Leite</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Configurações</a></li>
+                    <li><a href="@routes.Login.logout()">Sair</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Pesquisar...">
+                </form>
             </div>
         </div>
+    </nav>
 
-        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("public/stylesheets/dashboard.css")">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="public/javascripts/bootstrap.min.js"></script>
-    }
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar navbar-static-top list-group">
+                    <li class="active list-group-item">Temas</li>
+                    @for(tema <- temas) {
+                        <li class="list-group-item">
+                            <a href="@routes.Application.setTemaAtual(tema.getId())">@tema.getNome()</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-sm-9 col-md-10 main">
+                <h1 class="page-header">Bem Vindo ao Portal do Leite @usuario.getNome() !</h1>
+                <h2 class="sub-header">@temaAtual.getNome()</h2>
+                    <!--
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="name">Select list</label>
+                            <select class="form-control">
+                                <option>-2</option>
+                                <option>-1</option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
+                        </div>
+                    </form>
+-->
+
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("public/stylesheets/dashboard.css")">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="public/javascripts/bootstrap.min.js"></script>
+}

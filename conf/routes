@@ -8,6 +8,7 @@ GET         /login               controllers.Login.show()
 POST        /login               controllers.Login.autenticar()
 GET         /logout              controllers.Login.logout()
 POST        /home                controllers.Login.cadastrar()
+GET        /tema/atual/:id       controllers.Application.setTemaAtual(id: Long)
 
 
 # Map static resources from the /public folder to the /assets URL path
