@@ -4,6 +4,8 @@ import models.*;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
 import play.Logger;
+import play.data.DynamicForm;
+import play.data.Form;
 import play.mvc.Result;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -35,8 +37,8 @@ public class Application extends Controller {
 
     @Transactional
     public static Usuario getUsuarioAtual(String nome) {
-        List<Usuario> usuarios = dao.findByAttributeName("Usuario","nome", nome);
-        if (usuarios.size() > 0){
+        List<Usuario> usuarios = dao.findByAttributeName("Usuario", "nome", nome);
+        if (usuarios.size() > 0) {
             return usuarios.get(0);
         }
         return null;
@@ -51,6 +53,18 @@ public class Application extends Controller {
     public static Result setTemaAtual(long id) {
         temaAtual = dao.findByEntityId(Tema.class, id);
         Logger.info("Selecionando tema");
+        return redirect("/");
+    }
+
+    @Transactional
+    public static Result vota(Long id) {
+        Usuario u = dao.findByEntityId(Usuario.class, id);
+        DynamicForm form = Form.form().bindFromRequest();
+        int dif =  (Integer.parseInt(form.get("dificuldade")));
+        Voto v = new Voto(u,dif);
+        getTemaAtual().addVoto(v);
+        dao.merge(getTemaAtual());
+        dao.flush();
         return redirect("/");
     }
 
@@ -79,10 +93,10 @@ public class Application extends Controller {
     }
 
     @Transactional
-    public static void addDificuldade(){
+    public static void addDificuldade() {
 
     }
-}
+
 /*
 
 /*

@@ -69,6 +69,7 @@ public class Login extends Controller {
 
     @Transactional
     public static Result cadastrar() {
+
         Usuario user = cadastroForm.bindFromRequest().get();
 
         if (cadastroForm.hasErrors() || validarCadastro(user.getEmail())) {

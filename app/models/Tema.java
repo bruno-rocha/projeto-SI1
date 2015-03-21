@@ -57,7 +57,10 @@ public class Tema{
         boolean flag = true;
         for (Voto v: votos){
             if(v.getUsuario().equals(vt.getUsuario())){
-                v.setDificuldade(vt.getDificuldade());
+                try {
+                    v.setDificuldade(vt.getDificuldade());
+                }catch(Exception e){
+                }
                 flag = false;
                 break;
             }
@@ -70,7 +73,7 @@ public class Tema{
 
         double total = 0f;
         for (Voto e: votos){
-            total += e.getDificuldade().getValor();
+            total += e.getDificuldade();
         }
 
         return String.format("%.2f", total/votos.size());
@@ -78,10 +81,10 @@ public class Tema{
     }
 
     public String getMedianaDificuldade(){
-        if (votos.size()%2 != 0) return String.format("%.2f", votos.get(votos.size()/2).getDificuldade().getValor());
+        if (votos.size()%2 != 0) return String.format("%.2f", votos.get(votos.size()/2).getDificuldade());
         else{
-            return String.format("%.2f", (votos.get(votos.size()/2).getDificuldade().getValor() +
-                    votos.get(votos.size()/2 -1).getDificuldade().getValor())/2.0);
+            return String.format("%.2f", (votos.get(votos.size()/2).getDificuldade() +
+                    votos.get(votos.size()/2 -1).getDificuldade())/2.0);
         }
     }
 
@@ -97,7 +100,7 @@ public class Tema{
         }
 
         for (int i = indice -1 ; i >= 0 ; i--){
-            if (votos.get(i).getDificuldade().getValor() < v.getDificuldade().getValor()){
+            if (votos.get(i).getDificuldade() < v.getDificuldade()){
                 temp = votos.get(i);
                 votos.set(i, v);
                 votos.set(indice, temp);

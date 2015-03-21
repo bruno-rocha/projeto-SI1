@@ -8,14 +8,12 @@ public enum Dificuldade {
 
     private int valor;
 
-    private Dificuldade(int valor) throws Exception{
-        if(valor < -2 || valor > 2) throw new Exception("Dificuldade inválida.");
+    private Dificuldade(int valor){
         this.valor = valor;
     }
 
     public int getValor(){
         return valor;
     }
-
 
 }

@@ -10,7 +10,7 @@ public class Voto{
     private Long id;
 
     @Column
-    private Dificuldade dificuldade;
+    private int dificuldade;
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="usuario")
@@ -19,7 +19,7 @@ public class Voto{
     @ManyToOne(cascade=CascadeType.ALL)
     private Tema tema;
 
-    public Voto(Usuario usuario, Dificuldade dificuldade) throws Exception{
+    public Voto(Usuario usuario, int dificuldade){
         setDificuldade(dificuldade);
         setUsuario(usuario);
     }
@@ -27,11 +27,12 @@ public class Voto{
     public Voto() {
     }
 
-    public Dificuldade getDificuldade() {
+    public int getDificuldade() {
         return dificuldade;
     }
 
-    public void setDificuldade(Dificuldade dificuldade) {
+    public void setDificuldade(int dificuldade){
+        //if(dificuldade < -2 || dificuldade > 2) throw new Exception("Dificuldade inválida.");
         this.dificuldade = dificuldade;
     }
 
@@ -39,8 +40,7 @@ public class Voto{
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) throws Exception{
-        if(usuario == null) throw new Exception("Usuario inválido.");
+    public void setUsuario(Usuario usuario){
         this.usuario = usuario;
     }
 
@@ -57,12 +57,6 @@ public class Voto{
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = dificuldade.hashCode();
-        result = 31 * result + usuario.hashCode();
-        return result;
-    }
 
     public Long getId() {
         return id;

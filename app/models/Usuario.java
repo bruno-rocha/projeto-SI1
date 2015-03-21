@@ -21,20 +21,18 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String email, String senha, String nome, String sobrenome) throws Exception{
-
-        setEmail(email);
-        setNome(nome);
-        setSenha(senha);
-        setSobrenome(sobrenome);
+    public Usuario(String email, String senha, String nome, String sobrenome){
+            setEmail(email);
+            setNome(nome);
+            setSenha(senha);
+            setSobrenome(sobrenome);
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) throws Exception {
-        if (email == "") throw new Exception("Email inválido.");
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -42,8 +40,8 @@ public class Usuario {
         return senha;
     }
 
-    public void setSenha(String pass) throws Exception{
-        if (senha.length() < 8 || senha.length() > 20) throw new Exception("Senha deve ter entre 8 e 20 caracteres.");
+    public void setSenha(String pass){
+        //if (senha.length() < 8 || senha.length() > 20) throw new Exception("Senha deve ter entre 8 e 20 caracteres.");
         this.senha = pass;
     }
 
@@ -55,8 +53,7 @@ public class Usuario {
         return nome;
     }
 
-    public void setNome(String nome) throws Exception{
-        if (nome == "") throw new Exception("Nome inválido.");
+    public void setNome(String nome){
         this.nome = nome;
     }
 
@@ -64,8 +61,7 @@ public class Usuario {
         return sobrenome;
     }
 
-    public void setSobrenome(String sobrenome) throws Exception{
-        if (sobrenome == "") throw new Exception("Sobrenome inválido.");
+    public void setSobrenome(String sobrenome){
         this.sobrenome = sobrenome;
     }
 

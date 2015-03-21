@@ -37,12 +37,13 @@
                 </ul>
             </div>
             <div class="col-sm-9 col-md-10 main">
-                <h1 class="page-header">Bem Vindo ao Portal do Leite @usuario.getNome() !</h1>
+                <h1 class="page-header">Bem Vindo ao Portal do Leite @usuario.getNomeCompleto()!</h1>
                 <h2 class="sub-header">@temaAtual.getNome()</h2>
-                    <!--
+
+                @helper.form(routes.Application.vota(usuario.getId)) {
                     <form role="form">
                         <div class="form-group">
-                            <label for="name">Select list</label>
+                            <label for="name">Dificuldade</label>
                             <select class="form-control">
                                 <option>-2</option>
                                 <option>-1</option>
@@ -51,8 +52,10 @@
                                 <option>2</option>
                             </select>
                         </div>
+                        <button id="botaoDificuldade" type="submit" class="btn btn-success">OK</button>
                     </form>
--->
+                }
+
 
             </div>
         </div>
