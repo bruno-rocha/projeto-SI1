@@ -26,12 +26,15 @@ public class Disciplina {
     @JoinColumn(name="MetaDicas")
     private List<Metadica> metadicas;
 
-    public Disciplina(){}
+    public Disciplina(){
+        this.temas = new ArrayList<Tema>();
+        this.metadicas = new ArrayList<Metadica>();
+    }
 
     public Disciplina(String nome){
-        this.nome = nome;
-        temas = new ArrayList<Tema>();
-        metadicas = new ArrayList<Metadica>();
+        setNome(nome);
+        this.temas = new ArrayList<Tema>();
+        this.metadicas = new ArrayList<Metadica>();
     }
 
     public String getNome() {

@@ -19,8 +19,8 @@ public class DicaDisciplina extends Dica{
 
     public DicaDisciplina(Usuario user, String nome, String razao){
         super(user);
-        this.nome = nome;
-        this.razao = razao;
+        setNome(nome);
+        setRazao(razao);
     }
 
     public String getNome() {

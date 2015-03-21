@@ -25,13 +25,15 @@ public class Tema{
 
     public Tema(String nome){
 
-        this.nome = nome;
+        setNome(nome);
         this.dicas = new ArrayList<Dica>();
         this.votos = new ArrayList<Voto>();
 
     }
 
     public Tema() {
+        this.dicas = new ArrayList<Dica>();
+        this.votos = new ArrayList<Voto>();
     }
 
     public String getNome() {

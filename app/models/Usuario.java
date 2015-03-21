@@ -15,25 +15,26 @@ public class Usuario {
     private String senha;
     @Column
     private String nome;
+    @Column
+    private String sobrenome;
 
     public Usuario() {
     }
 
     public Usuario(String email, String senha, String nome, String sobrenome) throws Exception{
 
-        if (email == "" || nome == "" || senha == "" || sobrenome == "") throw new Exception("Campos em branco.");
-        if (senha.length() < 8 || senha.length() > 20) throw new Exception("Senha deve ter entre 8 e 20 caracteres.");
-
-        this.email = email;
-        this.nome = nome + " " + sobrenome;
-        this.senha = senha;
+        setEmail(email);
+        setNome(nome);
+        setSenha(senha);
+        setSobrenome(sobrenome);
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws Exception {
+        if (email == "") throw new Exception("Email inválido.");
         this.email = email;
     }
 
@@ -41,16 +42,31 @@ public class Usuario {
         return senha;
     }
 
-    public void setSenha(String pass) {
+    public void setSenha(String pass) throws Exception{
+        if (senha.length() < 8 || senha.length() > 20) throw new Exception("Senha deve ter entre 8 e 20 caracteres.");
         this.senha = pass;
+    }
+
+    public String getNomeCompleto(){
+        return nome + " " + sobrenome;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome) throws Exception{
+        if (nome == "") throw new Exception("Nome inválido.");
         this.nome = nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) throws Exception{
+        if (sobrenome == "") throw new Exception("Sobrenome inválido.");
+        this.sobrenome = sobrenome;
     }
 
     @Override

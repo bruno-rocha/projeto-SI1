@@ -18,7 +18,7 @@ public class DicaConselho extends Dica {
 
     public DicaConselho(Usuario user, String texto){
         super(user);
-        this.texto = texto;
+        setTexto(texto);
     }
 
     public String getTexto() {

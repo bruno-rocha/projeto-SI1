@@ -17,13 +17,7 @@ public class DicaMaterial extends Dica {
 
     public DicaMaterial(Usuario user, String url) throws Exception{
         super(user);
-
-        //condicao url
-        if(!url.startsWith("http://")) throw new Exception("URL precisa começar com http:// .");
-        if(!url.endsWith(".com") || !url.endsWith(".com.br") || !url.endsWith(".edu") || !url.endsWith(".edu.br"))
-            throw new Exception("URL deve terminar com: .com, .com.br, .edu ou .edu.br .");
-
-        this.url = url;
+        setUrl(url);
     }
 
     @Override
@@ -34,6 +28,19 @@ public class DicaMaterial extends Dica {
     @Override
     public String getTipo(){
         return "Link de material útil";
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) throws Exception {
+
+        if(!url.startsWith("http://")) throw new Exception("URL precisa começar com http:// .");
+        if(!url.endsWith(".com") || !url.endsWith(".com.br") || !url.endsWith(".edu") || !url.endsWith(".edu.br"))
+            throw new Exception("URL deve terminar com: .com, .com.br, .edu ou .edu.br .");
+
+        this.url = url;
     }
 
     @Override

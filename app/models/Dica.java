@@ -38,15 +38,18 @@ public class Dica{
 
 
     public Dica(Usuario user){
-        this.usuario = user;
-        this.status = Status.ABERTA;
-        concordancias = new ArrayList<Usuario>();
-        discordancias = new ArrayList<Comentario>();
-        acusacoes =  new ArrayList<Usuario>();
+        setUsuario(user);
+        setStatus(Status.ABERTA);
+        this.concordancias = new ArrayList<Usuario>();
+        this.discordancias = new ArrayList<Comentario>();
+        this.acusacoes =  new ArrayList<Usuario>();
     }
 
     public Dica(){
-
+        this.concordancias = new ArrayList<Usuario>();
+        this.discordancias = new ArrayList<Comentario>();
+        this.acusacoes =  new ArrayList<Usuario>();
+        setStatus(Status.ABERTA);
     }
 
     public int getNumeroConcordancias(){
@@ -91,6 +94,18 @@ public class Dica{
 
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public List<Comentario> getDiscordancias() {

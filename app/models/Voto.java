@@ -20,10 +20,8 @@ public class Voto{
     private Tema tema;
 
     public Voto(Usuario usuario, Dificuldade dificuldade) throws Exception{
-        if(usuario == null) throw new Exception("Usuario inválido.");
-        if(dificuldade.getValor() < -2 || dificuldade.getValor() > 2) throw new Exception("Dificuldade inválida.");
-        this.dificuldade = dificuldade;
-        this.usuario = usuario;
+        setDificuldade(dificuldade);
+        setUsuario(usuario);
     }
 
     public Voto() {
@@ -39,6 +37,11 @@ public class Voto{
 
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) throws Exception{
+        if(usuario == null) throw new Exception("Usuario inválido.");
+        this.usuario = usuario;
     }
 
     @Override

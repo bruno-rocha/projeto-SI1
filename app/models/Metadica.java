@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,8 @@ public class Metadica extends Dica {
 
     public Metadica(Usuario user, String comentario, Dica ... dica){
         super(user);
-        this.comentario = comentario;
+        setComentario(comentario);
+        this.dicas =  new ArrayList<Dica>();
         for(Dica d: dica) dicas.add(d);
     }
 
