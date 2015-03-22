@@ -14,7 +14,8 @@ public class DicaAssunto extends Dica {
         setAssunto(assunto);
     }
 
-    public String getAssunto() {
+    @Override
+    public String getTexto() {
         return assunto;
     }
 
