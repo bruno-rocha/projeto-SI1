@@ -1,5 +1,6 @@
 import models.*;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -9,17 +10,21 @@ import org.junit.Test;
 
 public class DicaTest {
 
+    private Usuario u;
+
+    @Before
+    public void initialize() {
+
+        try {
+            u = new Usuario("fpc@gmail.com", "12345578888", "Filipe", "Coutinho");
+        } catch (Exception e) {
+        }
+    }
+
 
     @Test
     public void testeURL(){
 
-        Usuario u = null;
-
-        try{
-            u = new Usuario("fpc@gmail.com", "12345578888", "Filipe", "Coutinho");
-        }catch(Exception e){
-
-        }
             try{
                 new DicaMaterial(u, "dumbledore.edu");
             }catch(Exception e){
@@ -31,6 +36,30 @@ public class DicaTest {
             }catch(Exception e){
                 Assert.assertEquals(e.getMessage(), "URL deve terminar com: .com, .com.br, .edu ou .edu.br .");
             }
+
+    }
+
+    @Test
+    public void testeDisciplina(){
+
+        DicaDisciplina d = new DicaDisciplina(u, "P2");
+        Assert.assertEquals("P2", d.getTexto());
+
+    }
+
+    @Test
+    public void testeAssunto(){
+
+        DicaAssunto d = new DicaAssunto(u, "Padroes de Projeto");
+        Assert.assertEquals("Padroes de Projeto", d.getTexto());
+
+    }
+
+    @Test
+    public void testeConselho(){
+
+        DicaConselho d = new DicaConselho(u, "Estude bem HTML");
+        Assert.assertEquals("Estude bem HTML", d.getTexto());
 
     }
 }

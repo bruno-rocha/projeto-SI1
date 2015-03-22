@@ -64,39 +64,36 @@ public abstract class Dica{
     }
 
 
-    private void checaConcordancia(Usuario u) throws Exception{
+    private boolean checaConcordancia(Usuario u){
         for (Usuario us: concordancias){
-            if (u.equals(us)) throw new Exception("Você já concordou com esta dica");
+            if (u.equals(us)) return false;
         }
 
         for (Comentario c: discordancias){
             Usuario us =  c.getUsuario();
-            if (u.equals(us)) throw new Exception("Você já discordou desta dica");
+            if (u.equals(us)) return false;
         }
 
+        return true;
     }
 
-    public void addDiscordancia(Comentario d)throws Exception{
-        checaConcordancia(d.getUsuario());
-        if(this.status == Status.ABERTA){
+    public void addDiscordancia(Comentario d){
+        if(this.status == Status.ABERTA && checaConcordancia(d.getUsuario())){
             discordancias.add(d);
             if(discordancias.size() == 20) this.status = Status.FECHADA;
         }
     }
 
     public void addConcordancia(Usuario u) throws Exception{
-        checaConcordancia(u);
-        if(this.status == Status.ABERTA) {
+        if(this.status == Status.ABERTA && checaConcordancia(u)) {
             concordancias.add(u);
             if(concordancias.size() == 20) this.status = Status.FECHADA;
         }
-
     }
 
-    public void addAcusacao(Usuario u) throws Exception{
+    public void addAcusacao(Usuario u){
 
-        if (acusacoes.contains(u)) throw new Exception("Você já acusou esta dica.");
-        acusacoes.add(u);
+        if (!acusacoes.contains(u)) acusacoes.add(u);
     }
 
     public Usuario getUsuario() {

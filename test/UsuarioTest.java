@@ -8,7 +8,6 @@ public class UsuarioTest {
         try {
             Usuario u = new Usuario("fpc@gmail.com", "1234557","Filipe", "Coutinho");
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }
