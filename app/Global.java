@@ -34,6 +34,13 @@ public class Global extends GlobalSettings {
                     Tema t11 = new Tema("Minitestes");
                     Tema t12 = new Tema("Projeto");
 
+                    /*models.Usuario u1 = new models.Usuario("Filipe", "Coutinho", "fpcoutinho@mail.com", "abcd1234");
+                    models.Usuario u2 = new models.Usuario("Bruno", "Rocha", "bvrocha@mail.com", "abcd1234");
+
+                    t1.addVoto(new models.Voto(u1, 1));
+                    t1.addVoto(new models.Voto(u2, 2));*/
+
+
                     dao.persist(t0);
                     dao.persist(t1);
                     dao.persist(t2);

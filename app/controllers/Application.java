@@ -62,7 +62,7 @@ public class Application extends Controller {
         DynamicForm form = Form.form().bindFromRequest();
         int dif =  (Integer.parseInt(form.get("dificuldade")));
         Voto v = new Voto(u,dif);
-        getTemaAtual().addVoto(v);
+        temaAtual.addVoto(v);
         dao.merge(getTemaAtual());
         dao.flush();
         return redirect("/");

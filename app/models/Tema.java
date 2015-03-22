@@ -14,6 +14,8 @@ public class Tema{
     @Column
     private String nome;
 
+    //@OneToMany(fetch = FetchType.EAGER)
+    //@JoinTable(name = "Votos")
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="Votos")
     private List<Voto> votos;
@@ -71,6 +73,7 @@ public class Tema{
 
     public String getMediaDificuldade(){
 
+        if(votos.size() == 0) return "0.00";
         double total = 0f;
         for (Voto e: votos){
             total += e.getDificuldade();
@@ -81,6 +84,8 @@ public class Tema{
     }
 
     public String getMedianaDificuldade(){
+
+        if(votos.size() == 0) return "0.00";
         if (votos.size()%2 != 0) return String.format("%.2f", votos.get(votos.size()/2).getDificuldade());
         else{
             return String.format("%.2f", (votos.get(votos.size()/2).getDificuldade() +
