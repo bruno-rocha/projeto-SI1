@@ -30,8 +30,20 @@ public class TemaTest {
         t.addVoto(new Voto(u3, -1));
         Assert.assertEquals(t.getMediaDificuldade(), "0,67");
         Assert.assertEquals(t.getMedianaDificuldade(), "1");
+    }
 
+    @Test
+    public void testaDica(){
+        t.addDica(new DicaAssunto(u2, "lele"));
+        t.addDica(new DicaAssunto(u, "lala"));
 
+        try {
+            t.addConcordanciaDica(new DicaAssunto(u, "lala"), u);
+        } catch (Exception e) {
+        }
+
+        Assert.assertEquals(t.getDicas().get(0).getTexto(), "lala");
+        Assert.assertEquals(t.getDicas().get(1).getTexto(), "lele");
     }
 
 }

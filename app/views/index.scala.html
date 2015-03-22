@@ -59,6 +59,26 @@
                     </form>
                 }
 
+                <br>
+
+                @helper.form(routes.Application.addDica()) {
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="name">Tipo da Dica</label>
+                            <select class="form-control" name = "tipo">
+                                <option>Conselho</option>
+                                <option>Material</option>
+                                <option>Assunto</option>
+                                <option>Disciplina</option>
+                            </select>
+                        </div>
+                        <input id="texto" type="text" name="texto" placeholder="Texto" class="form-control">
+                        <br>
+                        <button id="botaoDificuldade" type="submit" class="btn btn-success">OK</button>
+                    </form>
+
+
+                }
 
             </div>
         </div>
