@@ -1,24 +1,24 @@
 package models;
 
 import javax.persistence.*;
-import java.lang.Exception;
 
 @Entity(name = "Voto")
 public class Voto{
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @Column
     private int dificuldade;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="usuario")
+    @JoinColumn(name="usuarioDoVoto")
     private Usuario usuario;
-
-    @ManyToOne(cascade=CascadeType.ALL)
+/*
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name="temaDoVoto")
     private Tema tema;
-
+*/
     public Voto(Usuario usuario, int dificuldade){
         setDificuldade(dificuldade);
         setUsuario(usuario);

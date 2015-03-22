@@ -9,21 +9,18 @@ import java.util.List;
 public class Tema{
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @Column
     private String nome;
 
-    //@OneToMany(fetch = FetchType.EAGER)
-    //@JoinTable(name = "Votos")
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="Votos")
+    @JoinColumn
     private List<Voto> votos;
 
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="Dicas")
+    @JoinColumn
     private List<Dica> dicas;
-
 
     public Tema(String nome){
 
@@ -74,21 +71,21 @@ public class Tema{
     public String getMediaDificuldade(){
 
         if(votos.size() == 0) return "0.00";
-        double total = 0f;
+        double total = 0d;
         for (Voto e: votos){
             total += e.getDificuldade();
         }
 
-        return String.format("%.2f", total/votos.size());
+        return String.format("%d", total/votos.size());
 
     }
 
     public String getMedianaDificuldade(){
 
         if(votos.size() == 0) return "0.00";
-        if (votos.size()%2 != 0) return String.format("%.2f", votos.get(votos.size()/2).getDificuldade());
+        if (votos.size()%2 != 0) return String.format("%d", votos.get(votos.size()/2).getDificuldade());
         else{
-            return String.format("%.2f", (votos.get(votos.size()/2).getDificuldade() +
+            return String.format("%d", (votos.get(votos.size()/2).getDificuldade() +
                     votos.get(votos.size()/2 -1).getDificuldade())/2.0);
         }
     }

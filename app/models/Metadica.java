@@ -4,15 +4,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Filipe on 19/03/2015.
- */
-
-@Entity(name = "MetaDica")
+@Entity
 public class Metadica extends Dica {
-
-    @OneToMany(cascade= CascadeType.ALL)
-    @JoinColumn(name="Dicas")
+    @ElementCollection
     private List<Dica> dicas;
 
     @Column

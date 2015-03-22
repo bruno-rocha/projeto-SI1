@@ -16,7 +16,6 @@ import java.util.List;
 public class Application extends Controller {
     private static GenericDAO dao = new GenericDAOImpl();
     private static Tema temaAtual = (Tema) dao.findAllByClassName("Tema").get(0);
-    private static List<Voto> votos;
 
     @Transactional
     public static Result index() {
@@ -57,8 +56,8 @@ public class Application extends Controller {
     }
 
     @Transactional
-    public static Result vota(Long id) {
-        Usuario u = dao.findByEntityId(Usuario.class, id);
+    public static Result vota() {
+        Usuario u = getUsuarioAtual(session().get("usuarioAtual"));
         DynamicForm form = Form.form().bindFromRequest();
         int dif =  (Integer.parseInt(form.get("dificuldade")));
         Voto v = new Voto(u,dif);

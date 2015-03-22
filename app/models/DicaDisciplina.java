@@ -1,15 +1,9 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-/**
- * Created by Filipe on 19/03/2015.
- */
-
-@Entity(name = "DicaDisciplina")
+@Entity
 public class DicaDisciplina extends Dica{
-
     @Column
     private String nome;
     @Column

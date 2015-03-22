@@ -5,14 +5,13 @@ import java.util.*;
 
 @Entity(name = "Dica")
 public class Dica{
+    @Id
+    @GeneratedValue
+    private long id;
 
     public enum Status {
         FECHADA, ABERTA;
     }
-
-    @Id
-    @GeneratedValue
-    private Long id;
 
     @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name="Usuario")
@@ -30,13 +29,14 @@ public class Dica{
     private List<Comentario> discordancias;
 
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="Acusaocoes")
+    @JoinColumn(name="Acusacoes")
     private List<Usuario> acusacoes;
-
+/*
     @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="temaDaDica")
     private Tema tema;
 
-
+*/
     public Dica(Usuario user){
         setUsuario(user);
         setStatus(Status.ABERTA);

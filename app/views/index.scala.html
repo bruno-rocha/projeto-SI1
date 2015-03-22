@@ -37,13 +37,13 @@
                 </ul>
             </div>
             <div class="col-sm-9 col-md-10 main">
-                <h1 class="page-header">Bem Vindo ao Portal do Leite @usuario.getNomeCompleto()!</h1>
+                <h1 class="page-header">Bem Vindo ao Portal do Leite usuario.getNomeCompleto()!</h1>
                 <h2 class="sub-header">@temaAtual.getNome() </h2>
                 <br>
-                <h4> Dificuldade média: @temaAtual.getMediaDificuldade | Mediana da dificuldade: @temaAtual.getMedianaDificuldade.</h4>
+                <h4> Dificuldade média: @temaAtual.getMediaDificuldade | Mediana da dificuldade: @temaAtual.getMedianaDificuldade</h4>
 
 
-                @helper.form(routes.Application.vota(usuario.getId)) {
+                @helper.form(routes.Application.vota()) {
                     <form role="form">
                         <div class="form-group">
                             <label for="name">Dificuldade</label>

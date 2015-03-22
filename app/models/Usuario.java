@@ -4,10 +4,9 @@ import javax.persistence.*;
 
 @Entity(name="Usuario")
 public class Usuario {
-
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
 
     @Column
     private String email;

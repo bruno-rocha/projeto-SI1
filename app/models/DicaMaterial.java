@@ -1,15 +1,9 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-/**
- * Created by Filipe on 19/03/2015.
- */
-
-@Entity(name = "DicaMaterial")
+@Entity
 public class DicaMaterial extends Dica {
-
     @Column
     private String url;
 
