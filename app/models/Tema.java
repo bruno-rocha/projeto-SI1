@@ -76,7 +76,7 @@ public class Tema{
             total += e.getDificuldade();
         }
 
-        return String.format("%d", total/votos.size());
+        return String.format("%.2f", total/votos.size());
 
     }
 
@@ -85,8 +85,8 @@ public class Tema{
         if(votos.size() == 0) return "0.00";
         if (votos.size()%2 != 0) return String.format("%d", votos.get(votos.size()/2).getDificuldade());
         else{
-            return String.format("%d", (votos.get(votos.size()/2).getDificuldade() +
-                    votos.get(votos.size()/2 -1).getDificuldade())/2.0);
+            return String.format("%.2f", (votos.get(votos.size()/2).getDificuldade() +
+                    votos.get(votos.size()/2 -1).getDificuldade())/2f);
         }
     }
 

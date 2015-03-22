@@ -12,7 +12,7 @@ public class Voto{
     private int dificuldade;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="usuarioDoVoto")
+    @JoinColumn
     private Usuario usuario;
 /*
     @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
