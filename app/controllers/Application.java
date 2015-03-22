@@ -13,9 +13,12 @@ import views.html.index;
 
 import java.util.List;
 
+import static play.data.Form.form;
+
 public class Application extends Controller {
     private static GenericDAO dao = new GenericDAOImpl();
     private static Tema temaAtual = (Tema) dao.findAllByClassName("Tema").get(0);
+    //static Form<String> form = form(String.class).bindFromRequest();
 
     @Transactional
     public static Result index() {
@@ -68,10 +71,33 @@ public class Application extends Controller {
     }
 
     @Transactional
-    public static void addDica(Dica dica) {
-        //validar dica
-        dao.persist(dica);
+    public static Result addDica() {
+        Usuario u = getUsuarioAtual(session().get("usuarioAtual"));
+        DynamicForm forme = Form.form().bindFromRequest();
+        String tipo = forme.get("tipo");
+        String texto = forme.get("texto");
+        Dica d = null;
+
+        if (tipo.equals("Conselho")){
+            d =  new DicaConselho(u, texto);
+        }else if (tipo.equals("Material")){
+            try {
+                d = new DicaMaterial(u, texto);
+            } catch (Exception e) {
+            }
+        }else if(tipo.equals("Assunto")) {
+            d = new DicaAssunto(u, texto);
+        }else{
+            d = new DicaDisciplina(u, texto);
+        }
+
+
+        temaAtual.addDica(d);
+        dao.merge(getTemaAtual());
         dao.flush();
+
+
+        return redirect("/");
     }
 
     @Transactional
