@@ -23,6 +23,51 @@ public class DicaTest {
 
 
     @Test
+    public void testeConcordancias(){
+        DicaAssunto d =  new DicaAssunto(u, "LPT");
+
+        Assert.assertEquals(d.getStatus(), Dica.Status.ABERTA);
+        Assert.assertEquals(d.getTipo(), "Assunto Importante");
+
+        try {
+            d.addConcordancia(u);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Assert.assertEquals(d.getNumeroConcordancias(), 1);
+
+        Usuario u2 = new Usuario("fp@gmail.com", "12345578888", "Filipe", "Coutinho");
+
+        try {
+            Comentario c = new Comentario(u2, "lala");
+            d.addDiscordancia(c);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Assert.assertEquals(d.getIndiceConcordancias(), "0,50");
+
+    }
+
+    @Test
+    public void testeLock(){
+
+        DicaConselho d =  new DicaConselho(u, "StudyHard");
+
+        for (int i = 0; i <= 20; i++){
+            try {
+                d.addConcordancia(new Usuario(i+"@gmail.com", "12345578888", "Filipe", "Coutinho"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        Assert.assertEquals(d.getStatus(), Dica.Status.FECHADA);
+
+    }
+
+    @Test
     public void testeURL(){
 
             try{

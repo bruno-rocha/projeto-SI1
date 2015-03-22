@@ -19,7 +19,7 @@ public class DicaDisciplina extends Dica{
 
     @Override
     public String getTexto() {
-        return null;
+        return nome;
     }
 
     @Override
