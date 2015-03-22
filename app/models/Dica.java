@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity(name = "Dica")
-public class Dica{
+public abstract class Dica{
     @Id
     @GeneratedValue
     private long id;
@@ -51,6 +51,9 @@ public class Dica{
         this.acusacoes =  new ArrayList<Usuario>();
         setStatus(Status.ABERTA);
     }
+
+    public abstract String getTexto ();
+
 
     public int getNumeroConcordancias(){
         return concordancias.size();
@@ -128,7 +131,7 @@ public class Dica{
         return "Dica";
     }
 
-    public String getIndiceDiscordancias(){
+    public String getIndiceConcordancias(){
         return String.format("%.2f", (concordancias.size()+0.0)/(concordancias.size()+discordancias.size()));
     }
 

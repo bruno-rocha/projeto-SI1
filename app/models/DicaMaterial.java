@@ -11,7 +11,7 @@ public class DicaMaterial extends Dica {
 
     public DicaMaterial(Usuario user, String url) throws Exception{
         super(user);
-        setUrl(url);
+        setURL(url);
     }
 
     @Override
@@ -24,11 +24,12 @@ public class DicaMaterial extends Dica {
         return "Link de material útil";
     }
 
-    public String getUrl() {
+    @Override
+    public String getTexto() {
         return url;
     }
 
-    public void setUrl(String url) throws Exception {
+    public void setURL(String url) throws Exception {
 
         if(!url.startsWith("http://")) throw new Exception("URL precisa começar com http:// .");
         if(!url.endsWith(".com") || !url.endsWith(".com.br") || !url.endsWith(".edu") || !url.endsWith(".edu.br"))

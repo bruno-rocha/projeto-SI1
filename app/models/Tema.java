@@ -14,7 +14,7 @@ public class Tema{
     @Column
     private String nome;
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn
     private List<Voto> votos;
 
