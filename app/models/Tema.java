@@ -88,6 +88,13 @@ public class Tema{
 
     }
 
+    public Dica getDica(long id){
+        for (Dica d: dicas){
+            if (d.getId() == id) return d;
+        }
+        return null;
+    }
+
     public String getMedianaDificuldade(){
         if(votos.size() == 0){
             return "0.00";

@@ -69,24 +69,28 @@ public class Application extends Controller {
     }
 
     @Transactional
-    public static Result addConcordancia(Dica d){
+    public static Result addConcordancia(long idDica){
         Usuario u = getUsuarioAtual(session().get("Usuario"));
-        d.addConcordancia(u);
+        Dica d = temaAtual.getDica(idDica);
 
-        dao.merge(d);
-        dao.flush();
-
+        if(d != null) {
+            d.addConcordancia(u);
+            dao.merge(d);
+            dao.flush();
+        }
         return redirect("/");
     }
 
     @Transactional
-    public static Result addDiscordancia(Dica d){
+    public static Result addDiscordancia(long idDica){
         Usuario u = getUsuarioAtual(session().get("Usuario"));
-        d.addDiscordancia(u);
+        Dica d = temaAtual.getDica(idDica);
 
-        dao.merge(d);
-        dao.flush();
-
+        if(d != null) {
+            d.addDiscordancia(u);
+            dao.merge(d);
+            dao.flush();
+        }
         return redirect("/");
     }
 
