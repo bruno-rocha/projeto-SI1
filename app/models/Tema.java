@@ -15,7 +15,7 @@ public class Tema{
     private String nome;
 
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn
+    @Column
     private List<Voto> votos;
 
     @OneToMany(cascade=CascadeType.ALL)
@@ -113,7 +113,7 @@ public class Tema{
 
 
     public void addDica (Dica d){
-        dicas.add(d);
+        getDicas().add(d);
         ordenaDicas(d);
     }
 

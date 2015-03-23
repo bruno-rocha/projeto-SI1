@@ -2,7 +2,7 @@ package models;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name="dicaDisciplina")
 public class DicaDisciplina extends Dica{
     @Column
     private String nome;

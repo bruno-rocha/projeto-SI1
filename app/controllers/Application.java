@@ -33,7 +33,6 @@ public class Application extends Controller {
     @Transactional
     public static List<Tema> getTemas() {
         List<Tema> temas = dao.findAllByClassName("Tema");
-        dao.flush();
         return temas;
     }
 

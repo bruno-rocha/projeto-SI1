@@ -31,12 +31,11 @@ public abstract class Dica{
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="Acusacoes")
     private List<Usuario> acusacoes;
-/*
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="temaDaDica")
+
+    @ManyToOne
     private Tema tema;
 
-*/
+
     public Dica(Usuario user){
         setUsuario(user);
         setStatus(Status.ABERTA);

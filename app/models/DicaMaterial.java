@@ -2,7 +2,7 @@ package models;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name="material")
 public class DicaMaterial extends Dica {
     @Column
     private String url;

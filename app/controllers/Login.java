@@ -19,7 +19,6 @@ public class Login extends Controller {
     private static GenericDAO dao = new GenericDAOImpl();
     static Form<Usuario> loginForm = form(Usuario.class).bindFromRequest();
     static Form<Usuario> cadastroForm = form(Usuario.class).bindFromRequest();
-    static Usuario usuarioAtual;
 
     @Transactional
     public static Result show() {
@@ -46,7 +45,7 @@ public class Login extends Controller {
             flash("fail", "Email ou Senha Inválidos");
             return badRequest(login.render(loginForm, cadastroForm));
         } else {
-            usuarioAtual = (Usuario) dao.findByAttributeName(
+            Usuario usuarioAtual = (Usuario) dao.findByAttributeName(
                     "Usuario", "email", u.getEmail()).get(0);
             session().clear();
             session("usuarioAtual", usuarioAtual.getNome());
