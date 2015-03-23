@@ -12,7 +12,6 @@ GET         /tema/atual/:id        controllers.Application.setTemaAtual(id: Long
 POST        /voto                  controllers.Application.vota()
 POST        /dica                  controllers.Application.addDica()
 POST        /conc/:id              controllers.Application.addConcordancia(id: String)
-POST        /disc/:id              controllers.Application.addDiscordancia(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file          controllers.Assets.at(path="/public", file)

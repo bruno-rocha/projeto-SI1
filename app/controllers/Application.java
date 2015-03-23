@@ -93,18 +93,6 @@ public class Application extends Controller {
         return redirect("/");
     }
 
-    @Transactional
-    public static Result addDiscordancia(long idDica){
-        Usuario u = getUsuarioAtual(session().get("Usuario"));
-        Dica d = dao.findByEntityId(Dica.class, idDica);
-        Logger.info("Adicionada Discordancia");
-
-        temaAtual.addDiscordanciaDica(d, u);
-        dao.merge(temaAtual);
-        dao.flush();
-
-        return redirect("/");
-    }
 
     @Transactional
     public static Result addDica() {
