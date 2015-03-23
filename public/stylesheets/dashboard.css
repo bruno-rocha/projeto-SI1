@@ -84,3 +84,10 @@ body {
   margin-top: 0;
 }
 
+.form-group #dificuldade{
+  width: inherit;
+}
+
+#votoForm{
+  display: inline-flex;
+}

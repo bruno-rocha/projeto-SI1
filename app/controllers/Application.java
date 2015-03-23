@@ -21,7 +21,7 @@ public class Application extends Controller {
 
     @Transactional
     public static Result index() {
-        String userName = session().get("usuarioAtual");
+        String userName = session().get("Usuario");
         if (userName == null) {
             return redirect(routes.Login.show());
         }
@@ -58,7 +58,7 @@ public class Application extends Controller {
 
     @Transactional
     public static Result vota() {
-        Usuario u = getUsuarioAtual(session().get("usuarioAtual"));
+        Usuario u = getUsuarioAtual(session().get("Usuario"));
         DynamicForm form = Form.form().bindFromRequest();
         int dif =  (Integer.parseInt(form.get("dificuldade")));
         Voto v = new Voto(u,dif);
@@ -70,7 +70,7 @@ public class Application extends Controller {
 
     @Transactional
     public static Result addDica() {
-        Usuario u = getUsuarioAtual(session().get("usuarioAtual"));
+        Usuario u = getUsuarioAtual(session().get("Usuario"));
         DynamicForm forme = Form.form().bindFromRequest();
         String tipo = forme.get("tipo");
         String texto = forme.get("texto");
@@ -120,6 +120,11 @@ public class Application extends Controller {
 
     }
 
+    @Transactional
+    public static List<Dica> getDicasdoTema(){
+        List<Dica> dicasDoTema = getTemaAtual().getDicas();
+        return dicasDoTema;
+    }
 /*
 
 /*

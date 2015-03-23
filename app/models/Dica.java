@@ -32,9 +32,6 @@ public abstract class Dica{
     @JoinColumn(name="Acusacoes")
     private List<Usuario> acusacoes;
 
-    @ManyToOne
-    private Tema tema;
-
     @Transient
     private int LIMITE_DISCORDANCIA = 20;
     @Transient

@@ -21,7 +21,7 @@ public class Login extends Controller {
 
     @Transactional
     public static Result show() {
-        if (session().get("usuarioAtual") != null) {
+        if (session().get("Usuario") != null) {
             return redirect(routes.Application.index());
         }
         return ok(login.render(loginForm, cadastroForm));
@@ -44,10 +44,10 @@ public class Login extends Controller {
             flash("fail", "Email ou Senha Inválidos");
             return badRequest(login.render(loginForm, cadastroForm));
         } else {
-            Usuario usuarioAtual = (Usuario) dao.findByAttributeName(
+            Usuario usuario = (Usuario) dao.findByAttributeName(
                     "Usuario", "email", u.getEmail()).get(0);
             session().clear();
-            session("usuarioAtual", usuarioAtual.getNome());
+            session("Usuario", usuario.getNome());
             return redirect(routes.Application.index());
         }
 

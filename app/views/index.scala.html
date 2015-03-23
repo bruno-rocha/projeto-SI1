@@ -40,19 +40,20 @@
                 <h1 class="page-header">Bem Vindo ao Portal do Leite @usuario.getNomeCompleto()!</h1>
                 <h2 class="sub-header">@temaAtual.getNome() </h2>
                 <br>
-                <h4> Dificuldade média: @temaAtual.getMediaDificuldade | Mediana da dificuldade: @temaAtual.getMedianaDificuldade</h4>
+                @if(!temaAtual.getVotos.isEmpty){
+                    <p> Dificuldade média: @temaAtual.getMediaDificuldade | Mediana da dificuldade: @temaAtual.getMedianaDificuldade</p>
+                }
 
-
-                @helper.form(routes.Application.vota()) {
+                @helper.form(routes.Application.vota(), 'id -> "votoForm") {
                     <form role="form">
                         <div class="form-group">
-                            <label for="name">Dificuldade</label>
-                            <select class="form-control" name = "dificuldade">
-                                <option>-2</option>
-                                <option>-1</option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
+                            <label for="name">Dificuldade:</label>
+                            <select id="dificuldade" class="form-control" name = "dificuldade">
+                                <option>-2 (Muito fácil)</option>
+                                <option>-1    (Fácil)</option>
+                                <option> 0   (Regular)</option>
+                                <option>+1   (Difícil)</option>
+                                <option>+2 (Muito diícil)</option>
                             </select>
                         </div>
                         <button id="botaoDificuldade" type="submit" class="btn btn-success">OK</button>
@@ -64,7 +65,7 @@
                 @helper.form(routes.Application.addDica()) {
                     <form role="form">
                         <div class="form-group">
-                            <label for="name">Tipo da Dica</label>
+                            <label for="name">Tipo da Dica:</label>
                             <select class="form-control" name = "tipo">
                                 <option>Conselho</option>
                                 <option>Material</option>
@@ -79,6 +80,27 @@
 
 
                 }
+                <br>
+                <br>
+                <h4>Dicas</h4>
+                <ul clas="list-group">
+                @if(!Application.getDicasdoTema.isEmpty){
+                    @for(dica <- Application.getDicasdoTema()){
+                        <li class="list-group-item">@dica.toString</li>
+                        <h4>Número de pessoas que corcodaram: @dica.getNumeroConcordancias</h4>
+                        <h4>Número de pessoas que discodaram: @dica.getNumeroConcordancias</h4>
+                        <button type="submit" class="btn btn-xs btn-success" value="Concordo">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                        </button>
+                        <button type="submit" class="btn btn-xs btn-danger" value="Discordo">
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                        </button>
+                    }
+                }else{
+                    <li class="list-group-item">Sem dicas</li>
+                }
+
+                </ul>
 
             </div>
         </div>

@@ -1,7 +1,9 @@
 package models;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
-import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +16,12 @@ public class Tema{
     @Column
     private String nome;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @Column
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn
     private List<Voto> votos;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn
     private List<Dica> dicas;
@@ -89,7 +93,7 @@ public class Tema{
             return "0.00";
         }
         if (votos.size()%2 != 0){
-            return String.format("%d", votos.get(votos.size()/2).getDificuldade());
+            return String.format("%d", votos.get(votos.size() / 2).getDificuldade());
         }
         else{
             return String.format("%.2f", (votos.get(votos.size()/2).getDificuldade() +
@@ -119,7 +123,7 @@ public class Tema{
 
 
     public void addDica (Dica d){
-        getDicas().add(d);
+        dicas.add(d);
         ordenaDicas(d);
     }
 
