@@ -73,9 +73,10 @@ public class Usuario {
             return false;
         }
         Usuario usuario = (Usuario) o;
-        if (!email.equals(usuario.email)){
+        if (!email.equals(usuario.getEmail())){
             return false;
         }
+
         return true;
     }
 

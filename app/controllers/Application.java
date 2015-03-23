@@ -79,21 +79,24 @@ public class Application extends Controller {
         if (tipo.equals("Conselho")){
             d =  new DicaConselho(u, texto);
         }else if (tipo.equals("Material")){
-            try {
+
+            try{
                 d = new DicaMaterial(u, texto);
-            } catch (Exception e) {
+            }catch(Exception e){
+                flash("fail", e.getMessage());
             }
+
         }else if(tipo.equals("Assunto")) {
             d = new DicaAssunto(u, texto);
         }else{
             d = new DicaDisciplina(u, texto);
         }
 
-
-        temaAtual.addDica(d);
-        dao.merge(getTemaAtual());
-        dao.flush();
-
+        if(d != null) {
+            temaAtual.addDica(d);
+            dao.merge(getTemaAtual());
+            dao.flush();
+        }
 
         return redirect("/");
     }

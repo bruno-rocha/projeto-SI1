@@ -20,7 +20,6 @@ public class Global extends GlobalSettings {
             @Override
             public void invoke() throws Throwable {
                 if(dao.findAllByClassName("Tema").isEmpty()){
-                    Tema t0 = new Tema("Metadicas");
                     Tema t1 = new Tema("Análise x Design");
                     Tema t2 = new Tema("Orientacao a Objetos");
                     Tema t3 = new Tema("GRASP");
@@ -41,7 +40,6 @@ public class Global extends GlobalSettings {
                     t1.addVoto(new models.Voto(u2, 2));*/
 
 
-                    dao.persist(t0);
                     dao.persist(t1);
                     dao.persist(t2);
                     dao.persist(t3);

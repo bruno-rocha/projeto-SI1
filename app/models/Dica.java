@@ -1,5 +1,8 @@
 package models;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -13,21 +16,24 @@ public abstract class Dica{
         FECHADA, ABERTA;
     }
 
-    @OneToOne(cascade= CascadeType.ALL)
+    @OneToOne
     @JoinColumn
     private Usuario usuario;
 
     @Column
     private Status status;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="Concordancias")
     private List<Usuario> concordancias;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="Discordancias")
     private List<Comentario> discordancias;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="Acusacoes")
     private List<Usuario> acusacoes;
@@ -143,6 +149,25 @@ public abstract class Dica{
 
     private void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return getTipo() + ": " + getTexto() + "     | " + "Feita por " + getUsuario().getNomeCompleto();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Dica)) return false;
+
+        Dica dica = (Dica) o;
+
+        if (status != dica.status) return false;
+        if (!usuario.equals(dica.usuario)) return false;
+        if(!getTexto().equals(dica.getTexto())) return false;
+
+        return true;
     }
 
 }

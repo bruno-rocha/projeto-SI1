@@ -27,19 +27,7 @@ public class DicaDisciplina extends Dica{
         return "Disciplina Importante";
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DicaDisciplina)) return false;
-        if (!super.equals(o)) return false;
 
-        DicaDisciplina that = (DicaDisciplina) o;
-
-        if (!nome.equals(that.nome)) return false;
-        if (!getUsuario().equals(that.getUsuario())) return false;
-
-        return true;
-    }
 
     @Override
     public int hashCode() {

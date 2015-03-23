@@ -24,29 +24,13 @@ public class DicaAssunto extends Dica {
         this.assunto = assunto;
     }
 
-    @Override
-    public String toString() {
-        return "Assunto: " + assunto + ".";
-    }
 
     @Override
     public String getTipo(){
         return "Assunto Importante";
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DicaAssunto)) return false;
-        if (!super.equals(o)) return false;
 
-        DicaAssunto that = (DicaAssunto) o;
-
-        if (!assunto.equals(that.assunto)) return false;
-        if (!getUsuario().equals(that.getUsuario())) return false;
-
-        return true;
-    }
 
     @Override
     public int hashCode() {
