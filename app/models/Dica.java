@@ -31,7 +31,7 @@ public abstract class Dica{
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="Discordancias")
-    private List<Comentario> discordancias;
+    private List<Usuario> discordancias;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade=CascadeType.ALL)
@@ -47,13 +47,13 @@ public abstract class Dica{
         setUsuario(user);
         setStatus(Status.ABERTA);
         this.concordancias = new ArrayList<Usuario>();
-        this.discordancias = new ArrayList<Comentario>();
+        this.discordancias = new ArrayList<Usuario>();
         this.acusacoes =  new ArrayList<Usuario>();
     }
 
     public Dica(){
         this.concordancias = new ArrayList<Usuario>();
-        this.discordancias = new ArrayList<Comentario>();
+        this.discordancias = new ArrayList<Usuario>();
         this.acusacoes =  new ArrayList<Usuario>();
         setStatus(Status.ABERTA);
     }
@@ -74,8 +74,7 @@ public abstract class Dica{
                 return false;
             }
         }
-        for (Comentario c: discordancias){
-            Usuario us =  c.getUsuario();
+        for (Usuario us: discordancias){
             if (u.equals(us)){
                 return false;
             }
@@ -83,16 +82,16 @@ public abstract class Dica{
         return true;
     }
 
-    public void addDiscordancia(Comentario d){
-        if(this.status == Status.ABERTA && checaConcordancia(d.getUsuario())){
-            discordancias.add(d);
+    public void addDiscordancia(Usuario u){
+        if(this.status == Status.ABERTA && checaConcordancia(u)){
+            discordancias.add(u);
             if(discordancias.size() == LIMITE_DISCORDANCIA){
                 this.status = Status.FECHADA;
             }
         }
     }
 
-    public void addConcordancia(Usuario u) throws Exception{
+    public void addConcordancia(Usuario u){
         if(this.status == Status.ABERTA && checaConcordancia(u)) {
             concordancias.add(u);
             if(concordancias.size() == LIMITE_CONCORDANCIA){
@@ -123,7 +122,7 @@ public abstract class Dica{
         this.status = status;
     }
 
-    public List<Comentario> getDiscordancias() {
+    public List<Usuario> getDiscordancias() {
         return discordancias;
     }
 

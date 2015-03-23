@@ -69,6 +69,28 @@ public class Application extends Controller {
     }
 
     @Transactional
+    public static Result addConcordancia(Dica d){
+        Usuario u = getUsuarioAtual(session().get("Usuario"));
+        d.addConcordancia(u);
+
+        dao.merge(d);
+        dao.flush();
+
+        return redirect("/");
+    }
+
+    @Transactional
+    public static Result addDiscordancia(Dica d){
+        Usuario u = getUsuarioAtual(session().get("Usuario"));
+        d.addDiscordancia(u);
+
+        dao.merge(d);
+        dao.flush();
+
+        return redirect("/");
+    }
+
+    @Transactional
     public static Result addDica() {
         Usuario u = getUsuarioAtual(session().get("Usuario"));
         DynamicForm forme = Form.form().bindFromRequest();

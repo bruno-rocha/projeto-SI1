@@ -40,8 +40,7 @@ public class DicaTest {
         Usuario u2 = new Usuario("fp@gmail.com", "12345578888", "Filipe", "Coutinho");
 
         try {
-            Comentario c = new Comentario(u2, "lala");
-            d.addDiscordancia(c);
+            d.addDiscordancia(u2);
         } catch (Exception e) {
             e.printStackTrace();
         }
