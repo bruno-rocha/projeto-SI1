@@ -69,28 +69,40 @@ public class Application extends Controller {
     }
 
     @Transactional
-    public static Result addConcordancia(long idDica){
+    public static Result addConcordancia(String idDica){
         Usuario u = getUsuarioAtual(session().get("Usuario"));
         Dica d = temaAtual.getDica(idDica);
+        Logger.info(d.getTipo());
+        Logger.info(u.getEmail());
 
-        if(d != null) {
-            d.addConcordancia(u);
-            dao.merge(d);
-            dao.flush();
+        DynamicForm form = Form.form().bindFromRequest();
+        String valor = form.get("opcao");
+        Logger.info(valor);
+
+        if(valor.equals("Concordo")) {
+            temaAtual.addConcordanciaDica(d, u);
         }
+        else if(valor.equals("Discordo")) {
+            temaAtual.addDiscordanciaDica(d, u);
+        }
+
+        dao.merge(temaAtual);
+        //dao.merge(d);
+        dao.flush();
+
         return redirect("/");
     }
 
     @Transactional
     public static Result addDiscordancia(long idDica){
         Usuario u = getUsuarioAtual(session().get("Usuario"));
-        Dica d = temaAtual.getDica(idDica);
+        Dica d = dao.findByEntityId(Dica.class, idDica);
+        Logger.info("Adicionada Discordancia");
 
-        if(d != null) {
-            d.addDiscordancia(u);
-            dao.merge(d);
-            dao.flush();
-        }
+        temaAtual.addDiscordanciaDica(d, u);
+        dao.merge(temaAtual);
+        dao.flush();
+
         return redirect("/");
     }
 

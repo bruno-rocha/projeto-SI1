@@ -87,14 +87,19 @@
                     @for(dica <- Application.getDicasdoTema()){
                         <li class="list-group-item">@dica.toString</li>
                         <h4>Número de pessoas que corcodaram: @dica.getNumeroConcordancias</h4>
-                        <h4>Número de pessoas que discodaram: @dica.getNumeroConcordancias</h4>
-                        <button type="submit" class="btn btn-xs btn-success" value="Concordo">
-                            <span class="glyphicon glyphicon-thumbs-up"></span>
-                            <!--<a href=""></a>-->
-                        </button>
-                        <button type="submit" class="btn btn-xs btn-danger" value="Discordo">
-                            <span class="glyphicon glyphicon-thumbs-down"></span>
-                        </button>
+                        <h4>Número de pessoas que discodaram: @dica.getNumeroDiscordancias</h4>
+                        <h4>Indice de concordância: @dica.getIndiceConcordancias</h4>
+
+                        <form action="@routes.Application.addConcordancia(dica.toString)" method="post">
+
+                            <button type="submit" class="btn btn-xs btn-success" value="Concordo" name = "opcao">
+                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                            </button>
+
+                            <button type="submit" class="btn btn-xs btn-danger" value="Discordo" name = "opcao">
+                                <span class="glyphicon glyphicon-thumbs-down"></span>
+                            </button>
+                        </form>
                     }
                 }else{
                     <li class="list-group-item">Sem dicas</li>

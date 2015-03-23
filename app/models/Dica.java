@@ -8,6 +8,7 @@ import java.util.*;
 
 @Entity(name = "Dica")
 public abstract class Dica{
+
     @Id
     @GeneratedValue
     private long id;
@@ -21,7 +22,7 @@ public abstract class Dica{
     private Usuario usuario;
 
     @Column
-    private Status status;
+    private Status status = Status.ABERTA;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade=CascadeType.ALL)
@@ -62,6 +63,10 @@ public abstract class Dica{
 
     public int getNumeroConcordancias(){
         return concordancias.size();
+    }
+
+    public int getNumeroDiscordancias(){
+        return discordancias.size();
     }
 
     public int getNumeroAcusacoes() {
@@ -139,8 +144,11 @@ public abstract class Dica{
     }
 
     public String getIndiceConcordancias(){
+        if(getNumeroConcordancias() + getNumeroDiscordancias() == 0) return "Ainda não há votos.";
         return String.format("%.2f", (concordancias.size()+0.0)/(concordancias.size()+discordancias.size()));
     }
+
+
 
     public Long getId() {
         return id;

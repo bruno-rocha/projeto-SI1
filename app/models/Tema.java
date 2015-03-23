@@ -88,9 +88,9 @@ public class Tema{
 
     }
 
-    public Dica getDica(long id){
+    public Dica getDica(String id){
         for (Dica d: dicas){
-            if (d.getId() == id) return d;
+            if (d.toString().equals(id)) return d;
         }
         return null;
     }
