@@ -8,7 +8,7 @@ import play.db.jpa.JPA;
 
 import java.util.List;
 
-
+//
 public class Global extends GlobalSettings {
 
     private GenericDAO dao = new GenericDAOImpl();
