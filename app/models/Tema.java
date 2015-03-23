@@ -22,8 +22,10 @@ public class Tema{
     @JoinColumn
     private List<Dica> dicas;
 
-    public Tema(String nome){
+    @Transient
+    private int LIMITE_ACUSACOES = 3;
 
+    public Tema(String nome){
         setNome(nome);
         this.dicas = new ArrayList<Dica>();
         this.votos = new ArrayList<Voto>();
@@ -64,26 +66,31 @@ public class Tema{
                 break;
             }
         }
-        if(flag) votos.add(vt);
+        if(flag){
+            votos.add(vt);
+        }
         ordenaVotos(vt);
     }
 
     public String getMediaDificuldade(){
-
-        if(votos.size() == 0) return "0.00";
+        if(votos.size() == 0){
+            return "0.00";
+        }
         double total = 0d;
         for (Voto e: votos){
             total += e.getDificuldade();
         }
-
         return String.format("%.2f", total/votos.size());
 
     }
 
     public String getMedianaDificuldade(){
-
-        if(votos.size() == 0) return "0.00";
-        if (votos.size()%2 != 0) return String.format("%d", votos.get(votos.size()/2).getDificuldade());
+        if(votos.size() == 0){
+            return "0.00";
+        }
+        if (votos.size()%2 != 0){
+            return String.format("%d", votos.get(votos.size()/2).getDificuldade());
+        }
         else{
             return String.format("%.2f", (votos.get(votos.size()/2).getDificuldade() +
                     votos.get(votos.size()/2 -1).getDificuldade())/2f);
@@ -100,7 +107,6 @@ public class Tema{
                 break;
             }
         }
-
         for (int i = indice -1 ; i >= 0 ; i--){
             if (votos.get(i).getDificuldade() < v.getDificuldade()){
                 temp = votos.get(i);
@@ -127,7 +133,6 @@ public class Tema{
                 break;
             }
         }
-
         for (int i = indice -1 ; i >= 0 ; i--){
             if (dicas.get(i).getNumeroConcordancias() < d.getNumeroConcordancias()){
                 temp = dicas.get(i);
@@ -152,26 +157,31 @@ public class Tema{
 
     public void addAcusacao(Dica d, Usuario u) throws Exception{
         d.addAcusacao(u);
-        if (d.getNumeroAcusacoes() == 3) dicas.remove(d);
+        if (d.getNumeroAcusacoes() == LIMITE_ACUSACOES){
+            dicas.remove(d);
+        }
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    private void setId(Long id) {
         this.id = id;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
         Tema tema = (Tema) o;
-
-        if (!nome.equals(tema.nome)) return false;
-
+        if (!nome.equals(tema.nome)){
+            return false;
+        }
         return true;
     }
 
@@ -182,7 +192,9 @@ public class Tema{
 
     public boolean checaVotou(Usuario u){
         for(Voto v: getVotos()){
-            if(v.getUsuario().equals(u)) return true;
+            if(v.getUsuario().equals(u)){
+                return true;
+            }
         }
         return false;
     }

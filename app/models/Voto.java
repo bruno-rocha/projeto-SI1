@@ -46,14 +46,19 @@ public class Voto{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
         Voto voto = (Voto) o;
-
-        if (dificuldade != voto.dificuldade) return false;
-        if (!usuario.equals(voto.usuario)) return false;
-
+        if (dificuldade != voto.dificuldade){
+            return false;
+        }
+        if (!usuario.equals(voto.usuario)){
+            return false;
+        }
         return true;
     }
 

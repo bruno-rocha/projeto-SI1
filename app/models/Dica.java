@@ -14,7 +14,7 @@ public abstract class Dica{
     }
 
     @OneToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="Usuario")
+    @JoinColumn
     private Usuario usuario;
 
     @Column
@@ -35,6 +35,10 @@ public abstract class Dica{
     @ManyToOne
     private Tema tema;
 
+    @Transient
+    private int LIMITE_DISCORDANCIA = 20;
+    @Transient
+    private int LIMITE_CONCORDANCIA = 20;
 
     public Dica(Usuario user){
         setUsuario(user);
@@ -53,7 +57,6 @@ public abstract class Dica{
 
     public abstract String getTexto ();
 
-
     public int getNumeroConcordancias(){
         return concordancias.size();
     }
@@ -62,37 +65,43 @@ public abstract class Dica{
         return acusacoes.size();
     }
 
-
     private boolean checaConcordancia(Usuario u){
         for (Usuario us: concordancias){
-            if (u.equals(us)) return false;
+            if (u.equals(us)){
+                return false;
+            }
         }
-
         for (Comentario c: discordancias){
             Usuario us =  c.getUsuario();
-            if (u.equals(us)) return false;
+            if (u.equals(us)){
+                return false;
+            }
         }
-
         return true;
     }
 
     public void addDiscordancia(Comentario d){
         if(this.status == Status.ABERTA && checaConcordancia(d.getUsuario())){
             discordancias.add(d);
-            if(discordancias.size() == 20) this.status = Status.FECHADA;
+            if(discordancias.size() == LIMITE_DISCORDANCIA){
+                this.status = Status.FECHADA;
+            }
         }
     }
 
     public void addConcordancia(Usuario u) throws Exception{
         if(this.status == Status.ABERTA && checaConcordancia(u)) {
             concordancias.add(u);
-            if(concordancias.size() == 20) this.status = Status.FECHADA;
+            if(concordancias.size() == LIMITE_CONCORDANCIA){
+                this.status = Status.FECHADA;
+            }
         }
     }
 
     public void addAcusacao(Usuario u){
-
-        if (!acusacoes.contains(u)) acusacoes.add(u);
+        if (!acusacoes.contains(u)){
+            acusacoes.add(u);
+        }
     }
 
     public Usuario getUsuario() {
@@ -135,7 +144,7 @@ public abstract class Dica{
         return id;
     }
 
-    public void setId(Long id) {
+    private void setId(Long id) {
         this.id = id;
     }
 

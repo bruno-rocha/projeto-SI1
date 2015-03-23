@@ -8,7 +8,6 @@ import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
 import views.html.login;
 
 import java.util.List;
@@ -17,8 +16,8 @@ import static play.data.Form.form;
 
 public class Login extends Controller {
     private static GenericDAO dao = new GenericDAOImpl();
-    static Form<Usuario> loginForm = form(Usuario.class).bindFromRequest();
-    static Form<Usuario> cadastroForm = form(Usuario.class).bindFromRequest();
+    private static Form<Usuario> loginForm = form(Usuario.class).bindFromRequest();
+    private static Form<Usuario> cadastroForm = form(Usuario.class).bindFromRequest();
 
     @Transactional
     public static Result show() {

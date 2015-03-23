@@ -9,7 +9,7 @@ public class DicaMaterial extends Dica {
 
     public DicaMaterial(){}
 
-    public DicaMaterial(Usuario user, String url) throws Exception{
+    public DicaMaterial(Usuario user, String url) throws IllegalArgumentException{
         super(user);
         setURL(url);
     }
@@ -29,26 +29,34 @@ public class DicaMaterial extends Dica {
         return url;
     }
 
-    public void setURL(String url) throws Exception {
-
-        if(!url.startsWith("http://")) throw new Exception("URL precisa começar com http:// .");
-        if(!url.endsWith(".com") || !url.endsWith(".com.br") || !url.endsWith(".edu") || !url.endsWith(".edu.br"))
-            throw new Exception("URL deve terminar com: .com, .com.br, .edu ou .edu.br .");
-
+    public void setURL(String url) throws IllegalArgumentException {
+        if(!url.startsWith("http://")){
+            throw new IllegalArgumentException("URL precisa começar com http:// .");
+        }
+        if(!url.endsWith(".com") || !url.endsWith(".com.br") || !url.endsWith(".edu") || !url.endsWith(".edu.br")){
+            throw new IllegalArgumentException("URL deve terminar com: .com, .com.br, .edu ou .edu.br .");
+        }
         this.url = url;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DicaMaterial)) return false;
-        if (!super.equals(o)) return false;
-
+        if (this == o){
+            return true;
+        }
+        if (!(o instanceof DicaMaterial)){
+            return false;
+        }
+        if (!super.equals(o)){
+            return false;
+        }
         DicaMaterial that = (DicaMaterial) o;
-
-        if (!url.equals(that.url)) return false;
-        if (!getUsuario().equals(that.getUsuario())) return false;
-
+        if (!url.equals(that.url)){
+            return false;
+        }
+        if (!getUsuario().equals(that.getUsuario())){
+            return false;
+        }
         return true;
     }
 

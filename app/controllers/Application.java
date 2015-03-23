@@ -18,7 +18,6 @@ import static play.data.Form.form;
 public class Application extends Controller {
     private static GenericDAO dao = new GenericDAOImpl();
     private static Tema temaAtual = (Tema) dao.findAllByClassName("Tema").get(0);
-    //static Form<String> form = form(String.class).bindFromRequest();
 
     @Transactional
     public static Result index() {

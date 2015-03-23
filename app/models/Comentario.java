@@ -1,33 +1,35 @@
 package models;
 
 import javax.persistence.*;
-import java.lang.Exception;
 
 @Entity (name = "Comentario")
 public class Comentario{
-
     @Id
     @GeneratedValue
     private Long id;
 
     @OneToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="usuario")
+    @JoinColumn
     private Usuario usuario;
 
     @Column
     private String texto;
 
-    public Comentario(Usuario usuario, String texto) throws Exception{
+    @Transient
+    private int LIMITE_CARACTERES = 100;
 
-        if(texto.length() > 100) throw new Exception("Máximo de 100 caracteres.");
-        if(usuario == null) throw new Exception("Usuario inválido.");
+    public Comentario(Usuario usuario, String texto) throws IllegalArgumentException{
+        if(texto.length() > LIMITE_CARACTERES){
+            throw new IllegalArgumentException("Máximo de 100 caracteres.");
+        }
+        if(usuario == null){
+            throw new IllegalArgumentException("Usuario inválido.");
+        }
         this.texto = texto;
         this.usuario = usuario;
-
     }
     
     public Comentario(){
-        
     }
 
     public Usuario getUsuario() {
@@ -40,5 +42,13 @@ public class Comentario{
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    private void setId(Long id) {
+        this.id = id;
     }
 }

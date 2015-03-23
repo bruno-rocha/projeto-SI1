@@ -66,12 +66,16 @@ public class Usuario {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
         Usuario usuario = (Usuario) o;
-
-        if (!email.equals(usuario.email)) return false;
+        if (!email.equals(usuario.email)){
+            return false;
+        }
         return true;
     }
 
@@ -84,7 +88,7 @@ public class Usuario {
         return id;
     }
 
-    public void setId(Long id) {
+    private void setId(Long id) {
         this.id = id;
     }
 
